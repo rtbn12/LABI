@@ -1,0 +1,390 @@
+/* ============================================
+   ARMY RF — MILITARY TECH STYLE
+   Тёмная тема + хаки + техно-детали
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+
+/* ---------- ПЕРЕМЕННЫЕ ---------- */
+:root {
+    /* Основные цвета */
+    --bg-900: #0a0d0a;
+    --bg-800: #111511;
+    --bg-700: #1a1f1a;
+    --bg-600: #232a23;
+
+    /* Хаки-палитра */
+    --army-500: #6b7a4a;
+    --army-400: #8a9b5e;
+    --army-300: #a8b877;
+    --army-glow: #b6c98a;
+
+    /* Акценты */
+    --accent: #c9a227;        /* золото/латунь */
+    --accent-hot: #e8c547;
+    --danger: #8b1e1e;        /* тёмно-красный */
+    --danger-hot: #c92a2a;
+
+    /* Текст */
+    --text: #d4d8cc;
+    --text-dim: #8a9080;
+    --text-bright: #f0f2e8;
+
+    /* Границы и тени */
+    --border: rgba(168, 184, 119, 0.15);
+    --border-hot: rgba(201, 162, 39, 0.4);
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+    --glow: 0 0 20px rgba(201, 162, 39, 0.3);
+
+    /* Шрифты */
+    --font-display: 'Oswald', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* ---------- СБРОС И БАЗА ---------- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-mono);
+    background: var(--bg-900);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+
+    /* Фоновая текстура + сетка */
+    background-image:
+            radial-gradient(ellipse at top, rgba(107, 122, 74, 0.15), transparent 60%),
+            linear-gradient(rgba(168, 184, 119, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(168, 184, 119, 0.03) 1px, transparent 1px);
+    background-size: 100% 100%, 40px 40px, 40px 40px;
+    background-attachment: fixed;
+}
+
+/* Сканлайны поверх всего */
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+            0deg,
+            transparent 0,
+            transparent 2px,
+            rgba(0, 0, 0, 0.15) 3px,
+            transparent 4px
+    );
+    z-index: 9999;
+    mix-blend-mode: overlay;
+}
+
+/* ---------- ЗАГОЛОВКИ ---------- */
+h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-bright);
+    line-height: 1.1;
+}
+
+h1 {
+    font-size: clamp(2rem, 6vw, 4.5rem);
+    text-shadow: 0 0 30px rgba(201, 162, 39, 0.4);
+    position: relative;
+}
+
+h1::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    margin-top: 1rem;
+    background: linear-gradient(90deg, var(--accent), transparent);
+    box-shadow: var(--glow);
+}
+
+h2 {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    border-left: 4px solid var(--army-400);
+    padding-left: 1rem;
+}
+
+/* ---------- ССЫЛКИ ---------- */
+a {
+    color: var(--army-300);
+    text-decoration: none;
+    transition: color 0.2s, text-shadow 0.2s;
+    position: relative;
+}
+
+a:hover {
+    color: var(--accent-hot);
+    text-shadow: 0 0 12px rgba(232, 197, 71, 0.6);
+}
+
+/* ---------- КНОПКИ ---------- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.9rem 1.8rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-bright);
+    background: linear-gradient(135deg, var(--bg-700), var(--bg-600));
+    border: 1px solid var(--border-hot);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.25s ease;
+    clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent, rgba(201, 162, 39, 0.2));
+    opacity: 0;
+    transition: opacity 0.25s;
+}
+
+.btn:hover {
+    color: var(--accent-hot);
+    border-color: var(--accent-hot);
+    box-shadow: var(--glow), inset 0 0 20px rgba(201, 162, 39, 0.1);
+    transform: translateY(-2px);
+}
+
+.btn:hover::before {
+    opacity: 1;
+}
+
+.btn--danger {
+    border-color: rgba(201, 42, 42, 0.5);
+}
+
+.btn--danger:hover {
+    color: #ff6b6b;
+    border-color: var(--danger-hot);
+    box-shadow: 0 0 20px rgba(201, 42, 42, 0.4);
+}
+
+/* ---------- КАРТОЧКИ ---------- */
+.card {
+    background: linear-gradient(160deg, rgba(26, 31, 26, 0.9), rgba(17, 21, 17, 0.95));
+    border: 1px solid var(--border);
+    padding: 2rem;
+    position: relative;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: var(--accent);
+    box-shadow: var(--glow);
+}
+
+.card:hover {
+    border-color: var(--border-hot);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow), 0 0 30px rgba(201, 162, 39, 0.15);
+}
+
+/* ---------- ХЕДЕР / НАВИГАЦИЯ ---------- */
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10, 13, 10, 0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 2rem;
+}
+
+.nav {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav a {
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    padding: 0.5rem 0;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+}
+
+.nav a:hover,
+.nav a.active {
+    color: var(--accent-hot);
+    border-bottom-color: var(--accent);
+}
+
+/* ---------- БЕЙДЖИ / МЕТКИ ---------- */
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--army-300);
+    background: rgba(107, 122, 74, 0.15);
+    border: 1px solid var(--army-500);
+    clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);
+}
+
+.badge--danger {
+    color: #ff8888;
+    background: rgba(139, 30, 30, 0.2);
+    border-color: var(--danger);
+}
+
+/* ---------- РАЗДЕЛИТЕЛЬ ---------- */
+.divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--army-500), transparent);
+    margin: 3rem 0;
+    position: relative;
+}
+
+.divider::after {
+    content: '◆';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--bg-900);
+    padding: 0 1rem;
+    color: var(--accent);
+    font-size: 0.8rem;
+}
+
+/* ---------- ФОРМЫ ---------- */
+input, textarea, select {
+    width: 100%;
+    padding: 0.9rem 1.2rem;
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    color: var(--text-bright);
+    background: var(--bg-800);
+    border: 1px solid var(--border);
+    outline: none;
+    transition: all 0.2s;
+}
+
+input:focus, textarea:focus, select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(201, 162, 39, 0.15), var(--glow);
+}
+
+/* ---------- СКРОЛЛБАР ---------- */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-900);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(var(--army-500), var(--army-400));
+    border: 2px solid var(--bg-900);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+}
+
+/* ---------- АНИМАЦИИ ---------- */
+@keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 20px rgba(201, 162, 39, 0.3); }
+    50% { box-shadow: 0 0 40px rgba(201, 162, 39, 0.6); }
+}
+
+@keyframes scan {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100vh); }
+}
+
+@keyframes flicker {
+    0%, 100% { opacity: 1; }
+    92% { opacity: 1; }
+    93% { opacity: 0.6; }
+    94% { opacity: 1; }
+    97% { opacity: 0.8; }
+    98% { opacity: 1; }
+}
+
+.glow { animation: pulse-glow 2.5s infinite; }
+.flicker { animation: flicker 4s infinite; }
+
+/* ---------- УТИЛИТЫ ---------- */
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.text-accent { color: var(--accent); }
+.text-dim { color: var(--text-dim); }
+.mono { font-family: var(--font-mono); }
+
+/* Угловые метки на секциях */
+.section {
+    position: relative;
+    padding: 4rem 0;
+}
+
+.section::before,
+.section::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--accent);
+    opacity: 0.5;
+}
+
+.section::before {
+    top: 0; left: 0;
+    border-right: none;
+    border-bottom: none;
+}
+
+.section::after {
+    bottom: 0; right: 0;
+    border-left: none;
+    border-top: none;
+}

@@ -1,0 +1,22 @@
+table {
+    border-collapse: collapse;
+    font-family: sans-serif;
+    margin: 2rem auto;
+}
+
+caption {
+    caption-side: top;
+    padding: 0.5rem;
+    font-style: italic;
+    text-align: left;
+}
+
+th, td {
+    padding: 0.4rem 0.8rem;
+    text-align: left;
+}
+
+/* Чёрная рамка вокруг колонки с именами планет */
+tbody th[scope="row"] {
+    border: 2px solid #000;
+}

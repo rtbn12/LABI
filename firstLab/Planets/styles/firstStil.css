@@ -1,0 +1,267 @@
+/* ============================================================
+   STAR WARS — HOLOCRON / IMPERIAL TERMINAL THEME
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;900&family=Share+Tech+Mono&display=swap');
+
+/* ---------- ПЕРЕМЕННЫЕ ---------- */
+:root {
+    /* Космос */
+    --space-900: #05070d;
+    --space-800: #0a0f1c;
+    --space-700: #0f1729;
+    --space-600: #16203a;
+
+    /* Имперский серый */
+    --steel-500: #2a3550;
+    --steel-400: #3d4a6b;
+
+    /* Акценты */
+    --holo-blue: #4dd8ff;      /* голокрон / джедаи */
+    --holo-blue-dim: #2a8fb5;
+    --sith-red: #ff2e4d;       /* ситхи / империя */
+    --sith-red-dim: #a3122b;
+    --saber-green: #5fff8a;    /* Люк / Йода */
+    --gold: #ffd36b;           /* C-3PO / золото */
+
+    /* Текст */
+    --text: #c8d4e8;
+    --text-dim: #6b7a99;
+    --text-bright: #eaf2ff;
+
+    /* Эффекты */
+    --glow-blue: 0 0 12px rgba(77, 216, 255, 0.6), 0 0 30px rgba(77, 216, 255, 0.25);
+    --glow-red: 0 0 12px rgba(255, 46, 77, 0.6), 0 0 30px rgba(255, 46, 77, 0.25);
+
+    --font-display: 'Orbitron', sans-serif;
+    --font-mono: 'Share Tech Mono', monospace;
+}
+
+/* ---------- БАЗА ---------- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-mono);
+    color: var(--text);
+    background: var(--space-900);
+    min-height: 100vh;
+    padding: 3rem 1rem;
+    overflow-x: hidden;
+    position: relative;
+
+    /* Звёздное небо + туманность */
+    background-image:
+            radial-gradient(ellipse at 20% 0%, rgba(77, 216, 255, 0.08), transparent 50%),
+            radial-gradient(ellipse at 80% 100%, rgba(255, 46, 77, 0.06), transparent 50%),
+            radial-gradient(1px 1px at 20% 30%, #fff, transparent),
+            radial-gradient(1px 1px at 60% 70%, #cfe7ff, transparent),
+            radial-gradient(1px 1px at 80% 20%, #fff, transparent),
+            radial-gradient(2px 2px at 40% 80%, #9fd6ff, transparent),
+            radial-gradient(1px 1px at 90% 50%, #fff, transparent);
+    background-size: 100% 100%, 100% 100%, 200px 200px, 300px 300px, 250px 250px, 400px 400px, 350px 350px;
+    background-color: var(--space-900);
+}
+
+/* Сканлайны поверх всего */
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    background: repeating-linear-gradient(
+            0deg,
+            transparent 0,
+            transparent 2px,
+            rgba(0, 0, 0, 0.25) 3px,
+            transparent 4px
+    );
+    mix-blend-mode: overlay;
+    animation: scanMove 8s linear infinite;
+}
+
+@keyframes scanMove {
+    from { background-position: 0 0; }
+    to   { background-position: 0 100px; }
+}
+
+/* ---------- ТАБЛИЦА ---------- */
+table {
+    border-collapse: collapse;
+    margin: 0 auto;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    background: linear-gradient(180deg, rgba(10, 15, 28, 0.9), rgba(5, 7, 13, 0.95));
+    border: 1px solid var(--holo-blue-dim);
+    box-shadow:
+            0 0 40px rgba(77, 216, 255, 0.15),
+            inset 0 0 60px rgba(77, 216, 255, 0.05);
+    position: relative;
+}
+
+/* Уголки-«скобки» голокрона */
+table::before,
+table::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: 2px solid var(--holo-blue);
+    box-shadow: var(--glow-blue);
+}
+table::before {
+    top: -8px; left: -8px;
+    border-right: none;
+    border-bottom: none;
+}
+table::after {
+    bottom: -8px; right: -8px;
+    border-left: none;
+    border-top: none;
+}
+
+/* ---------- ПОДПИСЬ ---------- */
+caption {
+    caption-side: top;
+    padding: 1rem 1.2rem;
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--holo-blue);
+    text-shadow: var(--glow-blue);
+    background: linear-gradient(90deg, transparent, rgba(77, 216, 255, 0.08), transparent);
+    border-bottom: 1px solid var(--holo-blue-dim);
+    text-align: center;
+}
+
+caption a {
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--gold);
+    transition: all 0.2s;
+}
+caption a:hover {
+    color: #fff;
+    text-shadow: 0 0 10px var(--gold);
+}
+
+/* ---------- ШАПКА ТАБЛИЦЫ ---------- */
+thead th {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--holo-blue);
+    background: linear-gradient(180deg, rgba(77, 216, 255, 0.12), rgba(77, 216, 255, 0.02));
+    padding: 0.9rem 0.8rem;
+    text-align: left;
+    border-bottom: 2px solid var(--holo-blue);
+    text-shadow: 0 0 8px rgba(77, 216, 255, 0.5);
+    white-space: nowrap;
+}
+
+/* ---------- ТЕЛО ТАБЛИЦЫ ---------- */
+tbody th,
+tbody td {
+    padding: 0.7rem 0.8rem;
+    border-bottom: 1px solid rgba(77, 216, 255, 0.08);
+    vertical-align: middle;
+}
+
+/* Имена планет — заголовки строк */
+tbody th[scope="row"] {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    color: var(--text-bright);
+    background: rgba(77, 216, 255, 0.05);
+    border-left: 2px solid var(--holo-blue);
+    border-right: 2px solid var(--holo-blue);
+    text-shadow: 0 0 6px rgba(77, 216, 255, 0.3);
+    white-space: nowrap;
+}
+
+/* Группы (Terrestrial / Jovian / Dwarf) */
+tbody th[scope="rowgroup"] {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--sith-red);
+    background:
+            linear-gradient(180deg, rgba(255, 46, 77, 0.08), rgba(255, 46, 77, 0.02));
+    border: 2px solid var(--sith-red-dim);
+    text-align: center;
+    text-shadow: var(--glow-red);
+    padding: 1rem 0.8rem;
+    position: relative;
+}
+
+/* Свечение строк при ховере */
+tbody tr:hover {
+    background: rgba(77, 216, 255, 0.06);
+}
+
+tbody tr:hover th[scope="row"] {
+    color: var(--holo-blue);
+    text-shadow: var(--glow-blue);
+}
+
+/* Ссылка в Pluto */
+tbody a {
+    color: var(--sith-red);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--sith-red);
+    transition: all 0.2s;
+}
+tbody a:hover {
+    color: #fff;
+    text-shadow: var(--glow-red);
+    border-bottom-style: solid;
+}
+
+/* ---------- ЧЁРНАЯ РАМКА ВОКРУГ КОЛОНКИ С ИМЕНАМИ (требование 8) ---------- */
+tbody th[scope="row"] {
+    border-left: 2px solid #000;
+    border-right: 2px solid #000;
+}
+
+/* Первая и последняя планета — замкнуть рамку сверху/снизу */
+tbody tr:first-child th[scope="row"] {
+    border-top: 2px solid #000;
+}
+tbody tr:last-child th[scope="row"] {
+    border-bottom: 2px solid #000;
+}
+
+/* ---------- ДОП. ЭФФЕКТЫ ---------- */
+
+/* Пульсация заголовков групп как «сигнал тревоги» */
+tbody th[scope="rowgroup"] {
+    animation: pulseRed 3s ease-in-out infinite;
+}
+
+@keyframes pulseRed {
+    0%, 100% { box-shadow: 0 0 0 rgba(255, 46, 77, 0); }
+    50%      { box-shadow: 0 0 20px rgba(255, 46, 77, 0.35), inset 0 0 20px rgba(255, 46, 77, 0.08); }
+}
+
+/* Лёгкое «дрожание» голубого свечения шапки */
+thead th {
+    animation: holoFlicker 6s infinite;
+}
+
+@keyframes holoFlicker {
+    0%, 100%     { opacity: 1; }
+    92%, 94%     { opacity: 0.85; }
+    93%          { opacity: 1; }
+    97%          { opacity: 0.9; }
+}
