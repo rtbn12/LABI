@@ -1,0 +1,585 @@
+/* ============================================================
+   BIRDWATCHING — PINE #0b7043 & AMBER
+   Liquid glass + сосновая зелень + янтарь
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ---------- ПЕРЕМЕННЫЕ ---------- */
+:root {
+    /* Сосна на основе #0b7043 */
+    --pine-abyss: #031a0f;
+    --pine-deep: #062e1c;
+    --pine-dark: #084d2d;
+    --pine: #0b7043;           /* ← твой цвет */
+    --pine-light: #0e9157;
+    --pine-bright: #14b36e;
+    --pine-glow: #2dd68a;
+
+    /* Янтарь */
+    --amber-bright: #ffc857;
+    --amber: #ffb547;
+    --amber-deep: #e68a00;
+    --amber-warm: #ff8c42;
+    --amber-glow: rgba(255, 181, 71, 0.5);
+
+    /* Текст */
+    --text: #e6eee9;
+    --text-dim: #8ba397;
+    --text-bright: #ffffff;
+    --cream: #f5e6c8;
+
+    /* Liquid glass */
+    --glass-bg: rgba(11, 112, 67, 0.08);
+    --glass-bg-strong: rgba(11, 112, 67, 0.14);
+    --glass-shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
+    --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    --glass-blur: blur(32px) saturate(180%);
+
+    --font-display: 'Cormorant Garamond', serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+/* ---------- БАЗА ---------- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 10px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--text);
+    min-height: 100vh;
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 2.5rem 2.5rem 0;
+    line-height: 1.65;
+    overflow-x: hidden;
+    position: relative;
+    isolation: isolate;
+
+    /* Сосновый лес с янтарным светом */
+    background:
+            radial-gradient(ellipse 100% 55% at 50% 0%, rgba(255, 181, 71, 0.14), transparent 60%),
+            radial-gradient(ellipse 80% 50% at 15% 25%, rgba(11, 112, 67, 0.35), transparent 55%),
+            radial-gradient(ellipse 70% 50% at 85% 75%, rgba(45, 214, 138, 0.10), transparent 55%),
+            radial-gradient(ellipse 90% 60% at 50% 110%, rgba(11, 112, 67, 0.45), transparent 60%),
+            linear-gradient(180deg, #031a0f 0%, #062e1c 30%, #084d2d 65%, #031a0f 100%);
+    background-attachment: fixed;
+}
+
+/* Солнечный луч сквозь сосны */
+body::before {
+    content: '';
+    position: fixed;
+    top: -20%;
+    left: 30%;
+    width: 60%;
+    height: 60%;
+    background: radial-gradient(circle, rgba(255, 200, 87, 0.10), transparent 65%);
+    pointer-events: none;
+    z-index: -1;
+    filter: blur(60px);
+    animation: sunRay 20s ease-in-out infinite alternate;
+}
+
+@keyframes sunRay {
+    0%   { transform: translate(-10%, 0) scale(1); opacity: 0.6; }
+    50%  { transform: translate(10%, 5%) scale(1.15); opacity: 0.9; }
+    100% { transform: translate(-5%, 10%) scale(1.05); opacity: 0.7; }
+}
+
+/* ---------- ТИПОГРАФИКА ---------- */
+h1, h2, h3 {
+    font-family: var(--font-display);
+    color: var(--text-bright);
+    line-height: 1.05;
+    font-weight: 700;
+}
+
+h1 {
+    font-size: clamp(3.2rem, 6.5vw, 5.5rem);
+    letter-spacing: 0.01em;
+    background: linear-gradient(135deg, #ffffff 0%, #ffc857 45%, #ff8c42 75%, #ffb547 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 6px 30px rgba(255, 181, 71, 0.35));
+    text-align: left;
+}
+
+h2 {
+    font-size: clamp(2.2rem, 3.4vw, 3.2rem);
+    letter-spacing: 0.01em;
+    margin-bottom: 2rem;
+    position: relative;
+    display: inline-block;
+    background: linear-gradient(135deg, #ffffff, #ffc857);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 70px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--amber), transparent);
+    border-radius: 3px;
+    box-shadow: 0 0 20px var(--amber-glow);
+}
+
+p, li {
+    font-size: 1.55rem;
+    color: var(--text);
+}
+
+p {
+    margin-bottom: 1.4rem;
+}
+
+/* ---------- LIQUID GLASS ---------- */
+header, section, aside, footer {
+    position: relative;
+    background: var(--glass-bg);
+    border-radius: 28px;
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    box-shadow:
+            var(--glass-shadow),
+            var(--glass-highlight),
+            inset 0 -1px 0 rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+}
+
+header::before, section::before, aside::before, footer::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.22) 0%,
+            rgba(255, 255, 255, 0.04) 30%,
+            rgba(0, 0, 0, 0.18) 70%,
+            rgba(45, 214, 138, 0.20) 100%
+    );
+    -webkit-mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    z-index: 2;
+}
+
+header::after, section::after, aside::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 40%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, transparent 100%);
+    pointer-events: none;
+    border-radius: inherit;
+    z-index: 1;
+}
+
+/* ---------- HEADER ---------- */
+header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 3rem;
+    margin-bottom: 2.5rem;
+}
+
+h1 {
+    flex: 5;
+    min-width: 200px;
+    position: relative;
+    z-index: 3;
+}
+
+header img {
+    display: block;
+    height: 75px;
+    width: auto;
+    filter:
+            drop-shadow(0 0 20px rgba(255, 181, 71, 0.6))
+            drop-shadow(0 0 40px rgba(255, 181, 71, 0.3));
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    z-index: 3;
+}
+
+header img:hover {
+    transform: rotate(-10deg) scale(1.15);
+}
+
+/* ---------- NAV — УМЕНЬШЕНО ---------- */
+nav {
+    flex: 100%;
+    margin-top: 1.8rem;
+    padding-top: 1.8rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    position: relative;
+    z-index: 3;
+}
+
+nav ul {
+    display: flex;
+    gap: 0.6rem;
+    padding: 0;
+    list-style: none;
+    flex-wrap: wrap;
+}
+
+nav li {
+    flex: 1;
+    min-width: 0;        /* ← убрано жёсткое 130px */
+    text-align: center;
+}
+
+nav a, nav span {
+    display: block;
+    padding: 1rem 0.8rem;                 /* ← padding уменьшен */
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1.05rem;                   /* ← было 1.3rem */
+    letter-spacing: 0.08em;               /* ← было 0.18em */
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--text);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;                  /* ← не переносить */
+    text-overflow: ellipsis;              /* ← обрезать с ... если что */
+}
+
+nav a::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(45, 214, 138, 0.25), rgba(255, 181, 71, 0.20));
+    opacity: 0;
+    transition: opacity 0.35s;
+}
+
+nav a:hover {
+    color: #fff;
+    transform: translateY(-3px);
+    border-color: rgba(45, 214, 138, 0.4);
+    box-shadow:
+            0 12px 30px rgba(0, 0, 0, 0.4),
+            0 0 25px rgba(45, 214, 138, 0.3),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+nav a:hover::before { opacity: 1; }
+
+nav span {
+    color: var(--amber-bright);
+    background: linear-gradient(135deg, rgba(255, 200, 87, 0.18), rgba(255, 140, 66, 0.10));
+    border: 1px solid rgba(255, 200, 87, 0.35);
+    box-shadow:
+            0 0 20px rgba(255, 181, 71, 0.2),
+            inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    text-shadow: 0 0 12px rgba(255, 200, 87, 0.6);
+}
+
+/* ---------- MAIN ---------- */
+main {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 2.5rem;
+    margin-bottom: 2.5rem;
+}
+
+/* ---------- SECTION — ТЕКСТ НАРЯДНЕЕ ---------- */
+section {
+    padding: 4rem;
+}
+
+section p {
+    position: relative;
+    z-index: 3;
+    color: var(--text);
+    font-size: 1.6rem;
+    line-height: 1.85;
+    font-weight: 300;                     /* ← тонкий вес для элегантности */
+    letter-spacing: 0.01em;
+}
+
+/* Первый абзац — крупный, нарядный, буквица */
+section p:first-of-type {
+    font-family: var(--font-display);     /* ← Cormorant для элегантности */
+    font-size: 2.05rem;                   /* ← было 1.75rem */
+    line-height: 1.7;
+    font-weight: 500;
+    color: var(--cream);
+    letter-spacing: 0.005em;
+    margin-bottom: 2rem;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Буквица */
+section p:first-of-type::first-letter {
+    font-family: var(--font-display);
+    font-size: 5.6rem;
+    font-weight: 700;
+    float: left;
+    line-height: 0.9;
+    margin: 0.4rem 1rem 0 0;
+    color: var(--amber);
+    text-shadow:
+            0 0 25px rgba(255, 181, 71, 0.6),
+            0 0 50px rgba(255, 181, 71, 0.3);
+    /* Никаких opacity и animation — они ломают отрисовку */
+}
+
+/* Второй абзац — призыв, курсив */
+section p:last-of-type {
+    font-style: italic;
+    font-size: 1.5rem;
+    color: var(--text-dim);
+    border-left: 3px solid var(--amber);
+    padding-left: 1.5rem;
+    margin-top: 2rem;
+}
+
+/* ---------- ASIDE ---------- */
+aside {
+    padding: 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    align-content: start;
+}
+
+aside h2 {
+    grid-column: 1 / -1;
+    margin-bottom: 1rem;
+}
+
+aside a {
+    display: block;
+    border-radius: 18px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+    transition: all 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 3;
+    aspect-ratio: 1 / 1;
+}
+
+aside img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+aside a::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(45, 214, 138, 0.4) 0%, rgba(255, 181, 71, 0.2) 50%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.4s;
+    z-index: 1;
+    pointer-events: none;
+}
+
+aside a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background: linear-gradient(135deg, rgba(255, 200, 87, 0.7), transparent 60%);
+    -webkit-mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s;
+    z-index: 2;
+    pointer-events: none;
+}
+
+aside a:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow:
+            0 25px 50px rgba(0, 0, 0, 0.6),
+            0 0 40px rgba(45, 214, 138, 0.5);
+}
+
+aside a:hover::before,
+aside a:hover::after { opacity: 1; }
+
+aside a:hover img { transform: scale(1.12); }
+
+/* ---------- FOOTER ---------- */
+footer {
+    padding: 3rem 4rem;
+    margin: 0 -2.5rem;
+    border-radius: 0;
+    border-top-left-radius: 28px;
+    border-top-right-radius: 28px;
+    position: relative;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 20%;
+    width: 60%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--amber), transparent);
+    box-shadow: 0 0 25px var(--amber-glow);
+    border-radius: 0;
+    -webkit-mask: none;
+    mask: none;
+}
+
+footer p {
+    font-size: 1.35rem;
+    color: var(--text-dim);
+    text-align: center;
+    position: relative;
+    z-index: 3;
+}
+
+footer a {
+    color: var(--amber-bright);
+    text-decoration: none;
+    font-weight: 600;
+    position: relative;
+    transition: all 0.3s;
+}
+
+footer a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--amber-bright);
+    box-shadow: 0 0 10px var(--amber-glow);
+    transition: width 0.35s;
+}
+
+footer a:hover {
+    color: #fff;
+    text-shadow: 0 0 20px var(--amber-glow);
+}
+
+footer a:hover::after { width: 100%; }
+
+/* ---------- СКРОЛЛБАР ---------- */
+::-webkit-scrollbar { width: 14px; }
+::-webkit-scrollbar-track { background: var(--pine-abyss); }
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--pine), var(--pine-dark));
+    border-radius: 10px;
+    border: 3px solid var(--pine-abyss);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, var(--amber), var(--amber-deep));
+}
+
+::selection {
+    background: rgba(45, 214, 138, 0.4);
+    color: #fff;
+}
+
+/* ---------- АНИМАЦИИ ---------- */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+header  { animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
+section { animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s backwards; }
+aside   { animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.3s backwards; }
+footer  { animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.45s backwards; }
+
+/* ---------- АДАПТИВ ---------- */
+@media (max-width: 1100px) {
+    nav a, nav span {
+        font-size: 0.95rem;
+        padding: 0.9rem 0.6rem;
+        letter-spacing: 0.05em;
+    }
+}
+
+@media (max-width: 1000px) {
+    main { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 700px) {
+    body { padding: 1.2rem 1.2rem 0; }
+    header, section, aside { padding: 2rem; border-radius: 20px; }
+    header img { height: 55px; }
+    h1 { font-size: 3rem; }
+    nav ul { flex-direction: column; gap: 0.6rem; }
+    nav li { min-width: 100%; }
+    nav a, nav span { font-size: 1.1rem; padding: 1rem; }
+    section p:first-of-type { font-size: 1.7rem; }
+    section p:first-of-type::first-letter { font-size: 4rem; }
+    footer { margin: 0 -1.2rem; padding: 2rem; }
+}
+
+
+/* ============================================================
+   TYPEWRITER — курсор + стили для JS-печати
+   ============================================================ */
+
+/* Прячем контент до начала печати */
+section p {
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+/* Мигающий курсор в конце печатающегося абзаца */
+section p.typing::after {
+    content: '▍';
+    display: inline-block;
+    margin-left: 3px;
+    color: var(--amber);
+    font-weight: 100;
+    font-size: 0.9em;
+    text-shadow: 0 0 15px var(--amber-glow);
+    animation: cursorBlink 0.7s steps(2) infinite;
+    vertical-align: baseline;
+}
+
+@keyframes cursorBlink {
+    0%   { opacity: 1; }
+    50%  { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+
