@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Городская больница №67 — Запись на приём</title>
+  <meta name="author" content="Солодов Егор">
+  <link rel="stylesheet" href="styles/common.css">
+</head>
+<body>
+
+<header>
+  <h1>Городская больница №67</h1>
+  <nav>
+    <ul>
+      <li><a href="index.html">Главная</a></li>
+      <li><a href="services.html">Об услугах</a></li>
+      <li><a href="appointment.html" class="active">Запись на приём</a></li>
+      <li><a href="doctor.html">Врачу</a></li>
+      <li><a href="news.html">Новости</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <h2>Запись на приём</h2>
+  <p>Заполните судовой журнал записи. Все поля, помеченные флажком ⚑, обязательны. Если что — Быков разберётся.</p>
+
+  <div class="info-note">
+    Если вы пришли с попугаем — обязательно укажите его данные. Ливси лично осмотрит птицу. Бесплатно — только для членов экипажа.
+  </div>
+
+  <form id="appointmentForm" novalidate>
+
+    <fieldset>
+      <legend>Личные данные</legend>
+
+      <div class="form-group">
+        <label for="appointmentFio" class="required">ФИО пациента</label>
+        <input type="text" id="appointmentFio" name="fio" placeholder="Иванов Иван Иванович">
+      </div>
+
+      <div class="form-group">
+        <label for="appointmentPolicy" class="required">Полис ОМС или СНИЛС</label>
+        <input type="text" id="appointmentPolicy" name="policy" placeholder="1234 5678 9012 3456">
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Параметры приёма</legend>
+
+      <div class="form-group">
+        <label for="appointmentService" class="required">Тип услуги</label>
+        <select id="appointmentService" name="service">
+          <option value="">— Выберите услугу —</option>
+          <option value="Приём у логопеда-дефектолога">Приём у логопеда-дефектолога</option>
+          <option value="Наорать на интернов">Наорать на интернов</option>
+          <option value="Нагрубить начальнику">Нагрубить начальнику</option>
+          <option value="Похвалить интернов">Похвалить интернов</option>
+          <option value="Раскидать пациента по фактам">Раскидать пациента по фактам</option>
+          <option value="Лекция «Курить — вредно»">Лекция «Курить — вредно»</option>
+          <option value="Лекция «Пить ром — вредно»">Лекция «Пить ром — вредно»</option>
+          <option value="Посмеяться от души">Посмеяться от души</option>
+          <option value="Осмотр попугая">Осмотр попугая</option>
+          <option value="Поиск сокровищ в анализах">Поиск сокровищ в анализах</option>
+          <option value="Лечение цинги">Лечение цинги</option>
+          <option value="Отрубание конечностей со скидкой">Отрубание конечностей со скидкой</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="appointmentDate" class="required">Желаемая дата приёма</label>
+        <input type="date" id="appointmentDate" name="date">
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Сопровождающий попугай (если есть)</legend>
+
+      <div class="form-group">
+        <label for="appointmentParrotName">Имя попугая</label>
+        <input type="text" id="appointmentParrotName" name="parrotName" placeholder="Жак">
+      </div>
+
+      <div class="form-group">
+        <label for="appointmentParrotBreed">Порода попугая</label>
+        <input type="text" id="appointmentParrotBreed" name="parrotBreed" placeholder="Ара">
+      </div>
+
+      <div class="form-group">
+        <label for="appointmentParrotColor">Цвет попугая</label>
+        <select id="appointmentParrotColor" name="parrotColor">
+          <option value="">— Выберите цвет —</option>
+          <option value="Красный">Красный</option>
+          <option value="Синий">Синий</option>
+          <option value="Зелёный">Зелёный</option>
+          <option value="Жёлтый">Жёлтый</option>
+          <option value="Пёстрый">Пёстрый</option>
+          <option value="Как у Дэви Джонса">Как у Дэви Джонса</option>
+        </select>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Особые пожелания</legend>
+
+      <div class="form-group">
+        <label for="appointmentNotes">Что-то важное?</label>
+        <textarea id="appointmentNotes" name="notes" placeholder="Например: не пускать Быкова в палату до 10 утра, у меня болит голова..."></textarea>
+      </div>
+    </fieldset>
+
+    <button type="submit" class="btn btn--mint">⚓ Записаться ⚓</button>
+
+  </form>
+</main>
+
+<footer>
+  <p>© 1667–2026 Городская больница №67 им. доктора Ливси и Ивана Охлобыстина</p>
+  <p>Сайт разработал: <a href="#">Солодов Егор</a>, группа 12002408</p>
+</footer>
+
+<script src="scripts/validate.js"></script>
+</body>
+</html>
