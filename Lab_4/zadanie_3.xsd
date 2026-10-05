@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name = "gradeReport">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref = "date"/>
+                <xs:element ref = "subject"/>
+                <xs:element ref = "examiner"/>
+                <xs:element ref = "gradeList"/>
+            </xs:sequence>
+            <xs:attribute name = "id" use = "required" type = "xs:string"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name = "gradeList">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref = "gradeRecord" minOccurs="1" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name = "gradeRecord">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref = "student"/>
+                <xs:element ref = "grade"/>
+            </xs:sequence>
+            <xs:attribute name = "id" use = "required" type = "xs:string"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name = "date" type = "xs:string"/>
+    <xs:element name = "subject" type = "xs:string"/>
+    <xs:element name = "examiner" type = "xs:string"/>
+    <xs:element name = "student" type = "xs:string"/>
+    <xs:element name = "grade" type = "xs:string"/>
+
+</xs:schema>

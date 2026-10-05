@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE gradeReport [
+        <!ELEMENT gradeReport (date, subject, examiner, gradeList)>
+        <!ELEMENT date (#PCDATA)>
+        <!ELEMENT subject (#PCDATA)>
+        <!ELEMENT examiner (#PCDATA)>
+        <!ELEMENT gradeList (gradeRecord+)>
+        <!ELEMENT gradeRecord (student, grade)>
+        <!ELEMENT student (#PCDATA)>
+        <!ELEMENT grade (#PCDATA)>
+        <!ATTLIST gradeReport id CDATA #REQUIRED>
+        <!ATTLIST gradeRecord id CDATA #REQUIRED>
+        ]>
+<gradeReport id="120851">
+    <date>10-06-2008</date>
+    <subject>Computer Science Fundamentals</subject>
+    <examiner>prof.Litvinov</examiner>
+    <gradeList>
+        <gradeRecord id="1">
+            <student>Ivanov</student>
+            <grade>4</grade>
+        </gradeRecord>
+        <gradeRecord id="2">
+            <student>Petrov</student>
+            <grade>3</grade>
+        </gradeRecord>
+        <gradeRecord id="3">
+            <student>Sidorov</student>
+            <grade>5</grade>
+        </gradeRecord>
+    </gradeList>
+</gradeReport>
