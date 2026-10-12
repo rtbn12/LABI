@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Пример создания формы</title>
+    <link rel="stylesheet" href="scripts/first.css">
+</head>
+<body>
+
+<TABLE border align=center>
+    <FORM action="mailto:Имя@сервер.домен" method="post">
+        <TR>
+            <TD>Имя:</TD>
+            <TD><INPUT type="text" name="imya"
+                       value="Родион"></TD>
+        </TR>
+        <TR>
+            <TD>Фамилия:</TD>
+            <TD><INPUT type="text" name="familyname"
+                       value="Иванов"></TD>
+        </TR>
+        <TR>
+            <TD>E-mail:</TD>
+            <TD><INPUT type="text" name="mail"
+                       value="hia@ois.ural.ru"></TD>
+        </TR>
+        <TR>
+            <TD>Страница производит
+                хорошее впечатление?</TD>
+            <TD align="center">
+                <INPUT type="radio" name="opinion" value="OK">Да
+                <INPUT type="radio" name="opinion"
+                       value="NOK">Нет</TD>
+        </TR>
+        <TR>
+            <TD align="center">
+                <INPUT type="submit" value="Отослать"></TD>
+            <TD align="center"> <INPUT type="reset" value="Очистить"></TD>
+        </TR>
+    </FORM> </TABLE>
+</body>
+</html>

@@ -1,0 +1,229 @@
+/* ============================================================
+   HOSPITAL 67 — СТИЛЬ ДЛЯ УРЕЗАННОЙ ФОРМЫ (dopForm.html)
+   Пиратская таблица + форма осмотра пирата
+   ============================================================ */
+
+/* ---------- ЗАГОЛОВОК ---------- */
+main > h3 {
+    font-family: var(--font-display);
+    color: var(--blood-red);
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.04em;
+    text-shadow: 2px 2px 0 rgba(212, 175, 55, 0.4);
+}
+
+main > h3::before { content: '⚓ '; color: var(--gold); }
+main > h3::after  { content: ' ⚓'; color: var(--gold); }
+
+/* ---------- ТАБЛИЦА ---------- */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto 2rem;
+    background: var(--parchment);
+    border: 3px solid var(--wood-dark);
+    box-shadow: 6px 6px 0 var(--wood-dark);
+    font-family: var(--font-body);
+}
+
+/* Ячейки */
+table th,
+table td {
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--wood);
+    vertical-align: middle;
+    font-size: 1rem;
+    color: var(--ink);
+}
+
+/* Заголовки-ячейки слева */
+table th {
+    background: rgba(74, 58, 34, 0.15);
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--blood-red);
+    letter-spacing: 0.03em;
+    text-align: left;
+    white-space: nowrap;
+    width: 30%;
+}
+
+/* Общий заголовок «О пирате» */
+table th[colspan="2"] {
+    background: var(--wood-dark);
+    color: var(--gold);
+    font-size: 1.4rem;
+    text-align: center;
+    letter-spacing: 0.08em;
+    border-bottom: 3px solid var(--gold);
+    text-shadow: 1px 1px 0 var(--blood-red);
+}
+
+/* Строка с кнопками */
+table tr:last-child th {
+    background: rgba(139, 0, 0, 0.08);
+    text-align: center;
+    padding: 1.2rem;
+}
+
+/* ---------- ТЕКСТОВЫЕ ПОЛЯ ---------- */
+table input[type="text"],
+table input[type="number"],
+table input[type="email"],
+table input[type="tel"],
+table input[type="date"],
+table select,
+table textarea {
+    width: 100%;
+    padding: 0.6rem 0.9rem;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--ink);
+    background: #fffaf0;
+    border: 2px solid var(--wood);
+    border-radius: 4px;
+    outline: none;
+    transition: all 0.25s ease;
+}
+
+table input[type="text"]:hover,
+table select:hover,
+table textarea:hover {
+    border-color: var(--blood-red);
+}
+
+table input[type="text"]:focus,
+table select:focus,
+table textarea:focus {
+    border-color: var(--gold);
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.25);
+}
+
+/* Подсветка валидных/невалидных */
+table input[type="text"]:not(:placeholder-shown):valid {
+    border-color: var(--mint, #2bb673);
+}
+
+table input[type="text"]:not(:placeholder-shown):invalid {
+    border-color: var(--blood-red);
+    background: #fff5f5;
+}
+
+/* ---------- TEXTAREA ---------- */
+table textarea {
+    resize: vertical;
+    min-height: 90px;
+    line-height: 1.5;
+    font-size: 0.95rem;
+}
+
+/* ---------- SELECT ---------- */
+table select {
+    cursor: pointer;
+    padding-right: 2rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%234a3a22' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+table select option {
+    background: var(--parchment);
+    color: var(--ink);
+}
+
+/* ---------- РАДИО И ЧЕКБОКСЫ ---------- */
+table input[type="radio"],
+table input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 6px;
+    vertical-align: middle;
+    accent-color: var(--blood-red);
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: transform 0.2s;
+}
+
+table input[type="radio"]:hover,
+table input[type="checkbox"]:hover {
+    transform: scale(1.25);
+}
+
+/* Метки рядом с радио/чекбоксами — делаем кликабельными и красивыми */
+table td label,
+table td {
+    line-height: 1.8;
+}
+
+/* ---------- КНОПКИ ---------- */
+table input[type="submit"],
+table input[type="reset"] {
+    display: inline-block;
+    margin: 0.4rem 0.5rem;
+    padding: 0.8rem 1.8rem;
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border: 3px solid var(--gold);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    background: var(--blood-red);
+    color: var(--gold);
+    box-shadow: 3px 3px 0 var(--wood-dark);
+}
+
+table input[type="submit"]:hover,
+table input[type="reset"]:hover {
+    background: var(--gold);
+    color: var(--blood-red);
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 var(--wood-dark);
+}
+
+table input[type="submit"]:active,
+table input[type="reset"]:active {
+    transform: translate(0, 0);
+    box-shadow: 1px 1px 0 var(--wood-dark);
+}
+
+table input[type="reset"] {
+    background: rgba(74, 58, 34, 0.15);
+    color: var(--wood-dark);
+    border-color: var(--wood-dark);
+}
+
+table input[type="reset"]:hover {
+    background: var(--wood-dark);
+    color: var(--gold);
+}
+
+/* ---------- АДАПТИВ ---------- */
+@media (max-width: 700px) {
+    table {
+        font-size: 0.9rem;
+    }
+
+    table th,
+    table td {
+        padding: 0.5rem 0.6rem;
+    }
+
+    table th {
+        font-size: 0.95rem;
+        white-space: normal;
+    }
+
+    table input[type="submit"],
+    table input[type="reset"] {
+        width: 100%;
+        margin: 0.3rem 0;
+    }
+}

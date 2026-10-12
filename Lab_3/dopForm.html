@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Городская больница №67 — Врачу</title>
+    <meta name="author" content="Солодов Егор">
+    <link rel="stylesheet" href="styles/common.css">
+    <link rel="stylesheet" href="styles/dopForm.css">
+</head>
+<body>
+
+<header>
+    <h1>Городская больница №67</h1>
+    <nav>
+        <ul>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="services.html">Об услугах</a></li>
+            <li><a href="appointment.html">Запись на приём</a></li>
+            <li><a href="doctor.html" class="active">Врачу</a></li>
+            <li><a href="news.html">Новости</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="dopForm.html">Урезанная форма</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <h3>Результат осмотра пирата</h3>
+    <table border align=center>
+        <form name = "superForm" method = "post"
+              action="https://dfdfdfdf/polop" enctype="multipart/form-data">
+            <tr>
+                <th colspan="2">О пирате</th>
+            </tr>
+
+            <tr>
+                <th>ФИО</th>
+                <td><input type="text" name="piratFIO" value="Джек Джекович Джеков" size="50"></td>
+            </tr>
+
+            <tr>
+                <th>Прозвище</th>
+                <td><input type="text" name="piratNIK" value="Деревянная нога" size="50"></td>
+            </tr>
+
+            <tr>
+                <th>Должность</th>
+                <td><input type="text" name="piratRol" value="Капитан корабля" size="50"></td>
+            </tr>
+
+            <tr>
+                <th>Рост</th>
+                <td><input type="text" name="piratRost" value="Постоянный" size="50"></td>
+            </tr>
+
+            <tr>
+                <th>Вес</th>
+                <td><input type="text" name="piratVES" value="Имеет" size="50"></td>
+            </tr>
+
+            <tr>
+                <th>Давление</th>
+                <td><input type="text" name="piratVES" value="Оказывает" size="50"></td>
+            </tr>
+
+            <tr>
+                <th>Количество рук</th>
+                <td><input type="radio" name = "ruki" value= 0 > 0
+                     <input type="radio" name = "ruki" value= 1 > 1
+                     <input type="radio" name = "ruki" value= 2  checked> 2 </td>
+            </tr>
+
+            <tr>
+                <th>Из которых деревянных</th>
+                <td><input type="radio" name = "rukiVOOD" value= 0 checked> 0
+                    <input type="radio" name = "rukiVOOD" value= 1 > 1
+                    <input type="radio" name = "rukiVOOD" value= 2 > 2 </td>
+            </tr>
+
+            <tr>
+                <th>Количество ног</th>
+                <td><input type="radio" name = "nogi" value= 0 > 0
+                    <input type="radio" name = "nogi" value= 1 > 1
+                    <input type="radio" name = "nogi" value= 2  checked> 2 </td>
+            </tr>
+
+            <tr>
+                <th>Из которых деревянных</th>
+                <td><input type="radio" name = "nogiVOOD" value= 0 checked> 0
+                    <input type="radio" name = "nogiVOOD" value= 1 > 1
+                    <input type="radio" name = "nogiVOOD" value= 2 > 2 </td>
+            </tr>
+
+            <tr>
+                <th>Буйный</th>
+                <td><input type="checkbox" name = "buiniy" value= "da" checked> Да</td>
+            </tr>
+
+            <tr>
+                <th>Пьян</th>
+                <td><input type="checkbox" name = "pian" value= "da" checked> Да</td>
+            </tr>
+
+            <tr>
+                <th>На каком корабле работает</th>
+                <td><select name = "korablSelect" size="2">
+                    <option value="1">Шлюп</option>
+                    <option value="2">Шхуна</option>
+                    <option value="3">Бригантина </option>
+                    <option value="4">Фрегат</option>
+                    <option value="5">Галеон</option>
+                </select></td>
+            </tr>
+
+            <tr>
+                <th>Жалобы пациента</th>
+                <td><textarea rows="10" cols="10" name = "zalobi">Постоянно укачивает,
+                    нездоровый цвет кожи, выпадают зубы....</textarea></td>
+            </tr>
+
+            <tr>
+                <th>Назначенное лечение</th>
+                <td><textarea rows="10" cols="10" name = "lechenie">Бросить пить, есть больше фруктов...</textarea></td>
+            </tr>
+
+            <tr>
+                <th>Осмотр провёл</th>
+                <td><input type = "radio" name = "osmotren" value="1" checked> Доктор Ливси
+                    <input type = "radio" name = "osmotren" value="2" > Доктор Быков</td>
+            </tr>
+
+            <tr>
+                <th colspan="2"><input type = "submit" value="Сохранить">
+                    <input type = "reset" value="Очистить"></th>
+            </tr>
+
+        </form>
+    </table>
+
+
+</main>
+
+<footer>
+    <p>© 1667–2026 Городская больница №67 им. доктора Ливси и Ивана Охлобыстина</p>
+    <p>Сайт разработал: <a href="#">Солодов Егор</a>, группа 12002408</p>
+</footer>
+</body>
+</html>

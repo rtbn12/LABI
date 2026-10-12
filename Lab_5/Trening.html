@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Тренировка функций форм</title>
+    <link rel="stylesheet" href="scripts/first.css">
+</head>
+<body>
+
+<form action="https://lolipopik/perv"  method="post"
+      enctype="multipart/form-data" name = "pervForm">
+
+    <label>
+        <input type = "text" value="Произвольный текст"
+               name = "text1" maxlength="100" size="50"
+               readonly="readonly" checked="checked">
+    </label>
+
+        <label>
+            <input type = "password" value="123456"
+                   name = "password1" size = "6"
+                   maxlength="7" checked = "checked">
+        </label>
+
+
+        <div>
+            <label>
+                <input type = "checkbox" name = "checkbox1" checked> Поставить 5 за лабу
+            </label>
+        </div>
+    <div>
+        <label>
+            <input type = "checkbox" name = "checkbox2"> Ещё один чек-бокс
+        </label>
+    </div>
+    <div>
+        <label>
+            <input type = "checkbox" name="checkbox3" checked> Третий чек-бокс
+        </label>
+    </div>
+
+    <div>
+        <label>
+            <input type = text name = "text3" maxlength="50" size="50"
+                   readonly="readonly" value="Поставьте оценку:">
+            <input type = "radio" name="radio1" value="2"> 2
+            <input type = "radio" name="radio1" value="3"> 3
+            <input type = "radio" name="radio1" value="4"> 4
+            <input type = "radio" name="radio1" value="5" checked> 5
+        </label>
+    </div>
+
+    <div>
+        <label>
+            <input type = "submit" name = "submit1" value="Подтвердить">
+        </label>
+    </div>
+
+    <div>
+        <label>
+            <input type = "reset" name="reset1" value="Сброс">
+        </label>
+    </div>
+
+    <div>
+        <label>
+            <input type = "image" name = "image1"
+                   src="images/cheremsha.webp"  alt="pepe-fa"
+                   width="150" height="150" align="bottom">
+            Черемша — это народное название нескольких видов многолетних
+            травянистых растений из рода Лук (Allium), которые объединяет
+            характерный чесночный запах и вкус. Чаще всего под этим именем
+            подразумевают лук медвежий (Allium ursinum) и лук победный
+            (Allium victorialis), но встречаются и другие виды, например,
+            лук охотский (Allium ochotense) на Дальнем Востоке.
+        </label>
+    </div>
+
+    <div>
+        <label>
+            <input type = "file" name="file1" value="Прикрепить картинку">
+        </label>
+    </div>
+
+    <div>
+        <label>
+            <INPUT type="hidden" name="F2" value="2002">
+        </label>
+    </div>
+
+    <div>
+        <label>
+            Список оценок за лабу
+            <select name="select1" size="2" multiple="multiple">
+                <option value=2>неуд</option>
+                <option value=3>тройбан</option>
+                <option value=4>хорошо</option>
+                <option value=5 selected>отл</option>
+            </select>
+        </label>
+    </div>
+
+    <div>
+        <label>
+            <textarea name = "textarea1" cols="50" rows="10">
+            Черемша — это народное название нескольких видов многолетних
+            травянистых растений из рода Лук (Allium), которые объединяет
+            характерный чесночный запах и вкус. Чаще всего под этим именем
+            подразумевают лук медвежий (Allium ursinum) и лук победный
+            (Allium victorialis), но встречаются и другие виды, например,
+            лук охотский (Allium ochotense) на Дальнем Востоке.
+            </textarea>
+        </label>
+    </div>
+
+</form>
+
+</body>
+</html>
