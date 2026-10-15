@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Калькулятор сессии</title>
+    <link rel="stylesheet" href="styles/first.css">
+    <link rel = "icon" type = "image/png" href = "../Lab_5/images/cheremsha.webp">
+</head>
+<body>
+
+<h3>Форма для вычисления среднего балла за сессию</h3>
+
+<div>
+    <form name = "calculate" method="post" enctype="multipart/form-data">
+
+        <table>
+            <tr>
+                <th>Название предмета</th>
+                <th>Оценка за предмет</th>
+            </tr>
+
+            <tr>
+                <th>WEB-программирование</th>
+                <td>
+                    <input type = "radio" name = "Project1" value= 2>2
+                    <input type = "radio" name = "Project1" value= 3>3
+                    <input type = "radio" name = "Project1" value= 4 checked>4
+                    <input type = "radio" name = "Project1" value= 5>5
+                </td>
+            </tr>
+
+            <tr>
+                <th>3D-моделлирование</th>
+                <td>
+                    <input type = "radio" name = "Project2" value= 2>2
+                    <input type = "radio" name = "Project2" value= 3>3
+                    <input type = "radio" name = "Project2" value= 4 checked>4
+                    <input type = "radio" name = "Project2" value= 5>5
+                </td>
+            </tr>
+
+            <tr>
+                <th>Корпоративные сети</th>
+                <td>
+                    <input type = "radio" name = "Project3" value= 2>2
+                    <input type = "radio" name = "Project3" value= 3>3
+                    <input type = "radio" name = "Project3" value= 4 checked>4
+                    <input type = "radio" name = "Project3" value= 5>5
+                </td>
+            </tr>
+
+            <tr>
+                <th>Верификация и тестирование</th>
+                <td>
+                    <input type = "radio" name = "Project4" value= 2>2
+                    <input type = "radio" name = "Project4" value= 3>3
+                    <input type = "radio" name = "Project4" value= 4 checked>4
+                    <input type = "radio" name = "Project4" value= 5>5
+                </td>
+            </tr>
+
+            <tr>
+                <th>Анализ данных на Python</th>
+                <td>
+                    <input type = "radio" name = "Project5" value= 2>2
+                    <input type = "radio" name = "Project5" value= 3>3
+                    <input type = "radio" name = "Project5" value= 4 checked>4
+                    <input type = "radio" name = "Project5" value= 5>5
+                </td>
+            </tr>
+
+            <tr>
+                <th>Микроконтроллеры</th>
+                <td>
+                    <input type = "radio" name = "Project6" value= 2>2
+                    <input type = "radio" name = "Project6" value= 3>3
+                    <input type = "radio" name = "Project6" value= 4 checked>4
+                    <input type = "radio" name = "Project6" value= 5>5
+                </td>
+            </tr>
+
+            <tr>
+                <th>МиСПИС</th>
+                <td>
+                    <input type = "radio" name = "Project7" value= 2>2
+                    <input type = "radio" name = "Project7" value= 3>3
+                    <input type = "radio" name = "Project7" value= 4 checked>4
+                    <input type = "radio" name = "Project7" value= 5>5
+                </td>
+            </tr>
+
+            <tr>
+                <th>Кросплатформы на Java </th>
+                <td>
+                    <input type = "radio" name = "Project8" value= 2>2
+                    <input type = "radio" name = "Project8" value= 3>3
+                    <input type = "radio" name = "Project8" value= 4 checked>4
+                    <input type = "radio" name = "Project8" value= 5>5
+                </td>
+            </tr>
+
+            <tr>
+                <th><input type="reset" value="Очистить форму"></th>
+                <td>
+                    <a href="#"
+                       onclick="
+             var sum = 0;
+             for (var i = 1; i <= 8; i++) {
+               sum += parseFloat(document.calculate['Project' + i].value);
+             }
+             document.calculate.result.value = (sum / 8).toFixed(2);
+             return false; ">Узнать средний балл за сессию</a>
+                    <input type="text" name="result" value="0" readonly>
+                </td>
+            </tr>
+        </table>
+
+    </form>
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>trening</title>
+</head>
+<body>
+
+<A HREF="http://www.mail.ru"
+   onMouseOver="window.status='Почтовая служба'; return true">Ссылка</A>
+<A HREF="http://www.mail.ru">Ссылка</A>
+
+
+<A HREF="http://www.mail.ru"
+   onMouseOver="document.bgColor='pink';
+return true">Щелкните здесь</A>
+
+
+<A HREF="http://www.mail.ru"
+   onMouseOver="document.bgColor='pink', onMouseOver=window.status='Посетите MAIL.RU';
+return true">Щелкните здесь</A>
+
+<A HREF="http://www.mail.ru"
+   onClick="alert('Посмотреть почту!');">
+    Щелкните здесь</A>
+
+
+<FORM>
+    <INPUT TYPE="text" SIZE="30"
+           onFocus="document.bgColor='red';
+           return true" onblur="document.bgColor='grey';
+           return true ">
+</FORM>
+
+
+<FORM>
+    <INPUT TYPE="text" SIZE="40"
+           VALUE="Впишите свое имя и щелкните вне текстового поля"
+           onBlur="alert('Вы изменили ответ — вы уверены, что он правильный?');">
+</FORM>
+
+
+
+<FORM>
+    <INPUT TYPE="text" SIZE="45"
+           VALUE="Измените текст и щелкните вне поля — затем проверьте строку состояния"
+           onChange="alert('Вы изменили ответ — вы уверены, что он правильный?');">
+</FORM>
+
+
+<INPUT TYPE="text" SIZE="45"
+       VALUE="Измените текст и щелкните вне поля — затем проверьте строку состояния"
+       onselect="alert('Вы изменили ответ — вы уверены, что он правильный?');">
+</FORM>
+
+
+
+
+<html>
+<head>
+    <title> Вычисление площади квадрата </title>
+</head>
+<body>
+<h4>Вычисление площади квадрата</h4>
+<form name ="form1">
+    <p> Введите размер стороны квадрата и нажмите кнопку </p>
+    Сторона квадрата:
+    <input type="text" name="num" size =5> <br><br>
+    <input type="button" value="Вычислить" onClick= "document.form1.res.value=Math.pow(document.form1.num.value,2)">
+    <br><br>
+    Площадь:
+    <input type="text" name="res" size=10>
+    <br><br>
+    <input type="reset">
+</form>
+</body>
+</html>
+</body>
+</html>

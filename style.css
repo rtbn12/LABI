@@ -1,0 +1,868 @@
+/* ============================================================
+   JAPANESE SPRING — SAKURA OVER FUJI
+   Закат, гора Фудзи, падающие лепестки. Только CSS.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+    /* Небо заката */
+    --sky-top: #2a1a4e;
+    --sky-upper: #6b3a6b;
+    --sky-mid: #c66a8a;
+    --sky-warm: #ffa98c;
+    --sky-gold: #ffd4a0;
+    --sky-pale: #f8dfe0;
+
+    /* Солнце */
+    --sun-core: #fff5d0;
+    --sun-mid: #ffc857;
+    --sun-glow: #ff8c42;
+    --sun-deep: #e85a3a;
+
+    /* Фудзи */
+    --fuji-snow: #fff8f5;
+    --fuji-mid: #6a4a7a;
+    --fuji-base: #2a1a3e;
+
+    /* Сакура */
+    --petal-light: #ffe0eb;
+    --petal-pink: #ffb8d0;
+    --petal-deep: #ff8fb8;
+    --petal-white: #fff5f8;
+
+    /* Текст */
+    --ink: #3a1a2e;
+    --ink-soft: #6b3a52;
+    --ink-dim: #a07088;
+    --ink-faint: #c8a0b0;
+
+    /* Карточки */
+    --paper: rgba(255, 248, 250, 0.72);
+    --paper-hover: rgba(255, 240, 245, 0.9);
+    --paper-border: rgba(230, 120, 160, 0.28);
+    --paper-shadow: rgba(160, 60, 100, 0.18);
+
+    /* Акценты */
+    --sakura: #e63e6d;
+    --sakura-deep: #b82a52;
+    --gold-leaf: #c9a227;
+
+    --font-display: 'Cormorant Garamond', serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    min-height: 100vh;
+    /* НЕБО ЗАКАТА */
+    background: linear-gradient(
+            180deg,
+            var(--sky-top) 0%,
+            var(--sky-upper) 18%,
+            var(--sky-mid) 38%,
+            var(--sky-warm) 58%,
+            var(--sky-gold) 76%,
+            var(--sky-pale) 100%
+    );
+    background-attachment: fixed;
+    position: relative;
+}
+
+/* ============================================================
+   СОЛНЦЕ — огромное, на закате, с пульсацией
+   ============================================================ */
+
+html::before {
+    content: '';
+    position: fixed;
+    bottom: 22vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    background: radial-gradient(
+            circle,
+            var(--sun-core) 0%,
+            var(--sun-mid) 30%,
+            var(--sun-glow) 60%,
+            transparent 100%
+    );
+    box-shadow:
+            0 0 80px rgba(255, 200, 87, 0.8),
+            0 0 160px rgba(255, 140, 66, 0.6),
+            0 0 300px rgba(232, 90, 58, 0.4),
+            0 0 500px rgba(232, 90, 58, 0.2);
+    z-index: 0;
+    pointer-events: none;
+    animation: sunPulse 8s ease-in-out infinite;
+}
+
+@keyframes sunPulse {
+    0%, 100% {
+        transform: translateX(-50%) scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: translateX(-50%) scale(1.06);
+        opacity: 0.92;
+    }
+}
+
+/* ============================================================
+   ГОРА ФУДЗИ — силуэт с белой снежной шапкой
+   ============================================================ */
+
+html::after {
+    content: '';
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 140%;
+    height: 48vh;
+    /* Снег на вершине → тёмный силуэт горы */
+    background: linear-gradient(
+            180deg,
+            rgba(255, 248, 245, 0.0) 0%,
+            rgba(255, 248, 245, 0.85) 6%,
+            rgba(255, 240, 240, 0.6) 10%,
+            var(--fuji-mid) 14%,
+            var(--fuji-base) 60%,
+            var(--fuji-base) 100%
+    );
+    clip-path: polygon(
+            0% 100%,
+            22% 100%,
+            40% 42%,
+            46% 28%,
+            50% 24%,
+            54% 28%,
+            60% 42%,
+            78% 100%,
+            100% 100%
+    );
+    z-index: 1;
+    pointer-events: none;
+    filter: blur(1px) drop-shadow(0 0 40px rgba(255, 140, 66, 0.3));
+}
+
+/* ============================================================
+   body — контент поверх фона
+   ============================================================ */
+
+body {
+    font-family: var(--font-body);
+    color: var(--ink);
+    min-height: 100vh;
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 60px 40px 100px;
+    position: relative;
+    z-index: 10;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    background: transparent;
+}
+
+/* ============================================================
+   ОБЛАКА — body::before
+   Полупрозрачные горизонтальные полосы у горизонта
+   ============================================================ */
+
+body::before {
+    content: '';
+    position: fixed;
+    bottom: 30vh;
+    left: 0;
+    right: 0;
+    height: 40vh;
+    z-index: 2;
+    pointer-events: none;
+    background:
+            radial-gradient(ellipse 40% 8% at 15% 40%, rgba(255, 220, 220, 0.5), transparent 70%),
+            radial-gradient(ellipse 30% 6% at 75% 55%, rgba(255, 200, 200, 0.4), transparent 70%),
+            radial-gradient(ellipse 50% 5% at 45% 70%, rgba(255, 180, 180, 0.35), transparent 70%),
+            radial-gradient(ellipse 35% 4% at 85% 30%, rgba(255, 210, 210, 0.45), transparent 70%);
+    animation: cloudDrift 30s linear infinite;
+    filter: blur(2px);
+}
+
+@keyframes cloudDrift {
+    0%   { transform: translateX(0); opacity: 1; }
+    50%  { transform: translateX(30px); opacity: 0.85; }
+    100% { transform: translateX(0); opacity: 1; }
+}
+
+/* ============================================================
+   ЛЕПЕСТКИ САКУРЫ — body::after
+   Падают сверху вниз. Два слоя с разной скоростью.
+   ============================================================ */
+
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 5;
+    pointer-events: none;
+    background-image:
+        /* Слой 1 — мелкие лепестки */
+            radial-gradient(ellipse 6px 3px at 8% 15%,  var(--petal-pink),  transparent 75%),
+            radial-gradient(ellipse 5px 3px at 22% 45%, var(--petal-light), transparent 75%),
+            radial-gradient(ellipse 7px 4px at 35% 8%,  var(--petal-deep),  transparent 75%),
+            radial-gradient(ellipse 5px 3px at 48% 62%, var(--petal-white), transparent 75%),
+            radial-gradient(ellipse 6px 3px at 62% 25%, var(--petal-pink),  transparent 75%),
+            radial-gradient(ellipse 7px 4px at 75% 78%, var(--petal-light), transparent 75%),
+            radial-gradient(ellipse 5px 3px at 88% 40%, var(--petal-deep),  transparent 75%),
+            radial-gradient(ellipse 6px 3px at 95% 88%, var(--petal-pink),  transparent 75%),
+                /* Слой 2 — крупные лепестки переднего плана */
+            radial-gradient(ellipse 12px 6px at 15% 30%, var(--petal-pink),  transparent 70%),
+            radial-gradient(ellipse 10px 5px at 42% 82%, var(--petal-light), transparent 70%),
+            radial-gradient(ellipse 14px 7px at 68% 12%, var(--petal-deep),  transparent 70%),
+            radial-gradient(ellipse 11px 6px at 90% 65%, var(--petal-white), transparent 70%);
+    background-size:
+            380px 380px,
+            380px 380px,
+            380px 380px,
+            380px 380px,
+            380px 380px,
+            380px 380px,
+            380px 380px,
+            380px 380px,
+            620px 620px,
+            620px 620px,
+            620px 620px,
+            620px 620px;
+    background-repeat: repeat, repeat, repeat, repeat, repeat, repeat, repeat, repeat,
+    repeat, repeat, repeat, repeat;
+    background-position: 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0,
+    0 0, 0 0, 0 0, 0 0;
+    animation: petalsFall 18s linear infinite;
+    opacity: 0.9;
+}
+
+@keyframes petalsFall {
+    0% {
+        background-position: 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0,
+        0 0, 0 0, 0 0, 0 0;
+    }
+    100% {
+        background-position:
+                -20px 380px,
+                30px 380px,
+                -15px 380px,
+                25px 380px,
+                -30px 380px,
+                10px 380px,
+                -25px 380px,
+                20px 380px,
+                -40px 620px,
+                35px 620px,
+                -30px 620px,
+                45px 620px;
+    }
+}
+
+/* ============================================================
+   ЗАГОЛОВОК H1 — с японской «печатью» сакуры
+   ============================================================ */
+
+h1 {
+    font-family: var(--font-display);
+    font-size: clamp(38px, 6.5vw, 72px);
+    font-weight: 700;
+    font-style: italic;
+    text-align: center;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin-bottom: 16px;
+    color: var(--ink);
+    text-shadow:
+            0 2px 4px rgba(255, 255, 255, 0.6),
+            0 0 40px rgba(255, 200, 220, 0.8),
+            0 4px 20px rgba(180, 60, 100, 0.15);
+    position: relative;
+    padding-left: 90px;
+    animation: fadeInUp 1.2s cubic-bezier(0.19, 1, 0.22, 1) backwards;
+}
+
+/* Красная печать ханко с иероглифом «桜» (сакура) */
+h1::before {
+    content: '桜';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%) rotate(-6deg);
+    width: 68px;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    color: #fff5f8;
+    background: linear-gradient(135deg, var(--sakura), var(--sakura-deep));
+    border-radius: 8px;
+    box-shadow:
+            0 4px 20px rgba(230, 62, 109, 0.45),
+            inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    animation: sealWobble 6s ease-in-out infinite;
+}
+
+@keyframes sealWobble {
+    0%, 100% { transform: translateY(-50%) rotate(-6deg); }
+    50%      { transform: translateY(-50%) rotate(4deg); }
+}
+
+/* Цветочек сакуры справа от заголовка */
+h1::after {
+    content: '🌸';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 56px;
+    filter: drop-shadow(0 0 20px rgba(230, 62, 109, 0.6));
+    animation: flowerSpin 8s ease-in-out infinite;
+}
+
+@keyframes flowerSpin {
+    0%, 100% { transform: translateY(-50%) rotate(-10deg); }
+    50%      { transform: translateY(-50%) rotate(15deg) scale(1.1); }
+}
+
+/* ============================================================
+   ПОДПИСЬ ПОД ЗАГОЛОВКОМ
+   ============================================================ */
+
+body > p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    text-align: center;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 0 auto 70px;
+    padding: 10px 24px;
+    letter-spacing: 0.05em;
+    text-transform: none;
+    background: rgba(255, 250, 252, 0.55);
+    border: 1px solid rgba(230, 120, 160, 0.35);
+    border-radius: 999px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    width: fit-content;
+    box-shadow:
+            0 4px 16px rgba(230, 62, 109, 0.12),
+            inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.7);
+    animation: fadeInUp 1.2s cubic-bezier(0.19, 1, 0.22, 1) 0.3s backwards;
+}
+
+body > p::before {
+    content: '❀';
+    color: var(--sakura);
+    font-size: 18px;
+    text-shadow: 0 0 12px rgba(230, 62, 109, 0.6);
+}
+
+body > p::after {
+    content: '❀';
+    color: var(--sakura);
+    font-size: 18px;
+    text-shadow: 0 0 12px rgba(230, 62, 109, 0.6);
+}
+
+/* ============================================================
+   ЗАГОЛОВКИ РАЗДЕЛОВ
+   ============================================================ */
+
+h2 {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 3.8vw, 42px);
+    font-style: italic;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 80px 0 10px;
+    padding: 16px 20px 16px 100px;
+    position: relative;
+    letter-spacing: 0.01em;
+    background: linear-gradient(
+            90deg,
+            rgba(255, 235, 240, 0.75) 0%,
+            rgba(255, 245, 248, 0.5) 40%,
+            rgba(255, 250, 252, 0.15) 100%
+    );
+    border-left: 4px solid var(--sakura);
+    border-radius: 6px 20px 20px 6px;
+    box-shadow:
+            0 4px 20px rgba(230, 62, 109, 0.12),
+            inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    text-shadow:
+            0 1px 0 rgba(255, 255, 255, 0.8),
+            0 2px 8px rgba(180, 60, 100, 0.1);
+    overflow: hidden;
+    transition: all 0.4s ease;
+    animation: fadeInUp 1s cubic-bezier(0.19, 1, 0.22, 1) backwards;
+}
+
+/* Иероглиф «章» (раздел) в красном квадрате — как ханко */
+h2::before {
+    content: '章';
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%) rotate(-4deg);
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    color: #fff5f8;
+    background: linear-gradient(135deg, var(--sakura), var(--sakura-deep));
+    border-radius: 8px;
+    box-shadow:
+            0 4px 16px rgba(230, 62, 109, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    animation: sealWobble 6s ease-in-out infinite;
+}
+
+/* Ветка сакуры с лепестками справа — декоративный псевдоэлемент */
+h2::after {
+    content: '🌸 🌸 🌸';
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    letter-spacing: 6px;
+    opacity: 0.7;
+    filter: drop-shadow(0 0 8px rgba(230, 62, 109, 0.4));
+    animation: petalsShake 5s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes petalsShake {
+    0%, 100% { transform: translateY(-50%) rotate(0deg); }
+    25%      { transform: translateY(-50%) rotate(4deg); }
+    75%      { transform: translateY(-50%) rotate(-4deg); }
+}
+
+/* Ховер — печать крутится, полоса растёт */
+h2:hover {
+    background: linear-gradient(
+            90deg,
+            rgba(255, 220, 230, 0.9) 0%,
+            rgba(255, 235, 240, 0.6) 40%,
+            rgba(255, 245, 248, 0.25) 100%
+    );
+    border-left-color: var(--sakura-deep);
+    box-shadow:
+            0 8px 30px rgba(230, 62, 109, 0.25),
+            inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+h2:hover::before {
+    transform: translateY(-50%) rotate(360deg);
+    box-shadow:
+            0 6px 24px rgba(230, 62, 109, 0.6),
+            inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+h2:hover::after {
+    opacity: 1;
+    letter-spacing: 10px;
+}
+h3 {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-style: italic;
+    font-weight: 600;
+    color: var(--sakura-deep);
+    margin: 40px 0 14px;
+    padding: 8px 22px 8px 18px;
+    letter-spacing: 0.03em;
+    background: linear-gradient(
+            135deg,
+            rgba(255, 224, 235, 0.95) 0%,
+            rgba(255, 200, 220, 0.85) 50%,
+            rgba(255, 184, 208, 0.7) 100%
+    );
+    border-radius: 999px;
+    border: 1px solid rgba(230, 62, 109, 0.35);
+    box-shadow:
+            0 4px 16px rgba(230, 62, 109, 0.18),
+            inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    overflow: hidden;
+}
+
+/* Печать-иероглиф «項» (пункт) в маленьком кружке */
+h3::before {
+    content: '項';
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    font-family: var(--font-display);
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    color: #fff5f8;
+    background: linear-gradient(135deg, var(--sakura), var(--sakura-deep));
+    border-radius: 6px;
+    box-shadow:
+            0 2px 8px rgba(230, 62, 109, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+    flex-shrink: 0;
+    transition: all 0.4s ease;
+}
+
+/* Цветочек сакуры справа */
+h3::after {
+    content: '❀';
+    color: var(--sakura);
+    font-size: 16px;
+    opacity: 0.7;
+    transition: all 0.4s ease;
+    filter: drop-shadow(0 0 6px rgba(230, 62, 109, 0.5));
+}
+
+h3:hover {
+    color: #fff5f8;
+    background: linear-gradient(
+            135deg,
+            var(--sakura) 0%,
+            var(--sakura-deep) 100%
+    );
+    border-color: var(--sakura-deep);
+    transform: translateX(8px) scale(1.02);
+    box-shadow:
+            0 8px 28px rgba(230, 62, 109, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    letter-spacing: 0.06em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+h3:hover::before {
+    background: rgba(255, 245, 248, 0.25);
+    transform: rotate(360deg);
+    box-shadow:
+            0 2px 12px rgba(0, 0, 0, 0.2),
+            inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+h3:hover::after {
+    opacity: 1;
+    transform: rotate(360deg) scale(1.3);
+    color: #fff5f8;
+}
+
+/* ============================================================
+   СПИСКИ И КАРТОЧКИ-ССЫЛКИ
+   ============================================================ */
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+li {
+    margin: 14px 0;
+    animation: fadeInUp 0.8s cubic-bezier(0.19, 1, 0.22, 1) backwards;
+}
+
+li:nth-child(1) { animation-delay: 0.1s; }
+li:nth-child(2) { animation-delay: 0.2s; }
+li:nth-child(3) { animation-delay: 0.3s; }
+li:nth-child(4) { animation-delay: 0.4s; }
+
+a {
+    display: block;
+    padding: 22px 30px 22px 56px;
+    background: var(--paper);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--paper-border);
+    border-radius: 14px;
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    box-shadow:
+            0 8px 24px var(--paper-shadow),
+            inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+/* Цветочек сакуры слева — маркер карточки */
+a::before {
+    content: '❀';
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 22px;
+    color: var(--sakura);
+    text-shadow: 0 0 12px rgba(230, 62, 109, 0.5);
+    transition: all 0.4s ease;
+}
+
+/* Блик, пробегающий при ховере */
+a::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(255, 220, 235, 0.5) 45%,
+            rgba(255, 200, 220, 0.7) 50%,
+            rgba(255, 220, 235, 0.5) 55%,
+            transparent 100%
+    );
+    transition: left 0.9s ease;
+    pointer-events: none;
+}
+
+a:hover {
+    background: var(--paper-hover);
+    border-color: var(--sakura);
+    transform: translateX(10px) translateY(-2px);
+    box-shadow:
+            0 16px 40px rgba(230, 62, 109, 0.25),
+            0 0 40px rgba(255, 184, 208, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 1);
+    color: var(--sakura-deep);
+}
+
+a:hover::before {
+    color: var(--sakura-deep);
+    transform: translateY(-50%) rotate(360deg) scale(1.2);
+    text-shadow: 0 0 20px rgba(230, 62, 109, 0.8);
+}
+
+a:hover::after {
+    left: 100%;
+}
+
+.desc {
+    color: var(--ink-dim);
+    font-size: 13px;
+    font-style: italic;
+    margin-top: 6px;
+    letter-spacing: 0.02em;
+    transition: color 0.4s ease;
+    font-family: var(--font-display);
+}
+
+a:hover .desc {
+    color: var(--ink-soft);
+}
+
+/* ============================================================
+   АНИМАЦИЯ ПОЯВЛЕНИЯ
+   ============================================================ */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+        filter: blur(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
+/* ============================================================
+   СКРОЛЛБАР — лепестковый
+   ============================================================ */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 220, 235, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+            180deg,
+            var(--petal-light) 0%,
+            var(--petal-pink) 50%,
+            var(--sakura) 100%
+    );
+    border-radius: 10px;
+    border: 2px solid rgba(255, 240, 245, 0.6);
+    box-shadow: inset 0 0 8px rgba(230, 62, 109, 0.3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(
+            180deg,
+            var(--petal-pink) 0%,
+            var(--sakura) 50%,
+            var(--sakura-deep) 100%
+    );
+    box-shadow:
+            inset 0 0 12px rgba(230, 62, 109, 0.5),
+            0 0 15px rgba(230, 62, 109, 0.4);
+}
+
+/* ============================================================
+   ВЫДЕЛЕНИЕ ТЕКСТА — розовое, как лепесток
+   ============================================================ */
+
+::selection {
+    background: rgba(255, 184, 208, 0.6);
+    color: var(--sakura-deep);
+    text-shadow: 0 0 8px rgba(255, 220, 235, 0.8);
+}
+
+/* ============================================================
+   АДАПТИВ
+   ============================================================ */
+
+@media (max-width: 900px) {
+    body {
+        padding: 40px 20px 80px;
+    }
+
+    h1 {
+        padding-left: 0;
+        padding-top: 80px;
+    }
+
+    h1::before {
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%) rotate(-6deg);
+        width: 56px;
+        height: 56px;
+        font-size: 32px;
+    }
+
+    @keyframes sealWobble {
+        0%, 100% { transform: translateX(-50%) rotate(-6deg); }
+        50%      { transform: translateX(-50%) rotate(4deg); }
+    }
+
+    h1::after {
+        display: none;
+    }
+
+    html::before {
+        width: 160px;
+        height: 160px;
+        bottom: 26vh;
+    }
+
+    html::after {
+        height: 40vh;
+    }
+
+    body > p::before,
+    body > p::after {
+        content: '❀';
+        letter-spacing: 0;
+    }
+
+    body > p::before { margin-right: 10px; }
+    body > p::after  { margin-left: 10px; }
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 32px;
+    }
+
+    h2 {
+        font-size: 24px;
+        margin-top: 50px;
+    }
+
+    h3 {
+        font-size: 17px;
+    }
+
+    a {
+        padding: 18px 22px 18px 48px;
+        font-size: 15px;
+    }
+
+    .desc {
+        font-size: 12px;
+    }
+
+    html::before {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+hr {
+    border: none;
+    height: 24px;
+    margin: 50px 0;
+    background:
+            linear-gradient(
+                    90deg,
+                    transparent 0%,
+                    rgba(230, 62, 109, 0.15) 20%,
+                    rgba(230, 62, 109, 0.4) 50%,
+                    rgba(230, 62, 109, 0.15) 80%,
+                    transparent 100%
+            );
+    position: relative;
+}
+
+hr::before {
+    content: '❀';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 250, 252, 0.9);
+    padding: 4px 14px;
+    border-radius: 999px;
+    color: var(--sakura);
+    font-size: 16px;
+    box-shadow: 0 2px 10px rgba(230, 62, 109, 0.2);
+    text-shadow: 0 0 8px rgba(230, 62, 109, 0.5);
+}
