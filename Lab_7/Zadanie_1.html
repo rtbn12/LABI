@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Задание 1 — Поиск числа перед минимумом</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Поиск числа перед минимумом</h1>
+        <p class="subtitle">Введите 5 вещественных чисел и узнайте, какое стоит перед самым маленьким</p>
+    </header>
+
+    <form id="task1Form">
+        <div class="grid-5">
+            <input type="number" step="any" id="n1" placeholder="1" required>
+            <input type="number" step="any" id="n2" placeholder="2" required>
+            <input type="number" step="any" id="n3" placeholder="3" required>
+            <input type="number" step="any" id="n4" placeholder="4" required>
+            <input type="number" step="any" id="n5" placeholder="5" required>
+        </div>
+        <p class="hint">Используй точку для дробей: <code>3.14</code></p>
+        <button type="button" onclick="minimal()">Найти</button>
+        <input type="reset" class = "mytreb">
+
+        <div id = "otvet">
+            <p>Результат</p>
+            <input type="text" id = "result" name = "result" class = "mytrebtext" size = "10" readonly value="0">
+        </div>
+
+    </form>
+</div>
+
+<script src="scripts/Zadanie_1.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,493 @@
+/* ============================================================
+   LAB 6 — MATH TASKS
+   Тёмный минимализм, плавность, аккуратные карточки
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+
+:root {
+    --bg: #0a0a0f;
+    --bg-gradient-1: #1a0f2e;
+    --bg-gradient-2: #0f1a2e;
+    --bg-gradient-3: #2e0f1a;
+
+    --card: rgba(255, 255, 255, 0.04);
+    --card-hover: rgba(255, 255, 255, 0.07);
+    --card-border: rgba(255, 255, 255, 0.08);
+    --card-border-hover: rgba(255, 255, 255, 0.18);
+
+    --text: #f0f0f5;
+    --text-soft: rgba(240, 240, 245, 0.7);
+    --text-dim: rgba(240, 240, 245, 0.45);
+    --text-faint: rgba(240, 240, 245, 0.25);
+
+    --accent: #7c5cff;
+    --accent-bright: #9d7fff;
+    --accent-glow: rgba(124, 92, 255, 0.4);
+
+    --success: #30d158;
+    --success-glow: rgba(48, 209, 88, 0.4);
+    --danger: #ff375f;
+    --danger-glow: rgba(255, 55, 95, 0.4);
+    --warning: #ffb340;
+
+    --font: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    --mono: 'JetBrains Mono', 'SF Mono', monospace;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    min-height: 100vh;
+}
+
+body {
+    font-family: var(--font);
+    color: var(--text);
+    background: var(--bg);
+    padding: 40px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Живой градиентный фон */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background:
+            radial-gradient(circle at 15% 20%, var(--bg-gradient-1) 0%, transparent 45%),
+            radial-gradient(circle at 85% 80%, var(--bg-gradient-2) 0%, transparent 45%),
+            radial-gradient(circle at 50% 50%, var(--bg-gradient-3) 0%, transparent 55%),
+            var(--bg);
+    animation: auraPulse 12s ease-in-out infinite;
+    opacity: 0.9;
+}
+
+@keyframes auraPulse {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50%      { transform: scale(1.05) rotate(3deg); }
+}
+
+/* ============================================================
+   КАРТОЧКА
+   ============================================================ */
+
+.container {
+    width: 100%;
+    max-width: 720px;
+    background: var(--card);
+    backdrop-filter: blur(40px) saturate(180%);
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+    border: 1px solid var(--card-border);
+    border-radius: 24px;
+    padding: 48px 40px;
+    box-shadow:
+            0 30px 80px rgba(0, 0, 0, 0.5),
+            inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    position: relative;
+    overflow: hidden;
+    animation: cardAppear 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Блик сверху */
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.4),
+            transparent
+    );
+}
+
+@keyframes cardAppear {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ============================================================
+   ЗАГОЛОВКИ
+   ============================================================ */
+
+h1, h2, h3 {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+}
+
+h1 {
+    font-size: clamp(28px, 4vw, 40px);
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, #ffffff 0%, var(--accent-bright) 60%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 30px var(--accent-glow));
+    text-align: center;
+    padding: 10px 0;
+}
+
+.subtitle {
+    color: var(--text-dim);
+    font-size: 15px;
+    margin-bottom: 32px;
+    font-weight: 400;
+    text-align: center;
+}
+
+h2 {
+    font-size: 18px;
+    color: var(--text-soft);
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: 14px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 16px;
+    font-weight: 500;
+}
+
+header {
+    margin-bottom: 30px;
+}
+
+/* ============================================================
+   ФОРМА
+   ============================================================ */
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+/* Поля ввода */
+input[type="number"],
+input[type="text"] {
+    width: 100%;
+    padding: 14px 18px;
+    font-family: var(--mono);
+    font-size: 16px;
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    outline: none;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+input::placeholder {
+    color: var(--text-faint);
+    font-family: var(--font);
+}
+
+input:hover {
+    background: var(--card-hover);
+    border-color: var(--card-border-hover);
+}
+
+input:focus {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: var(--accent);
+    box-shadow:
+            0 0 0 4px rgba(124, 92, 255, 0.15),
+            0 0 30px var(--accent-glow);
+    transform: translateY(-1px);
+}
+
+/* Убираем стрелки у number */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+/* ============================================================
+   СЕТКА ДЛЯ 5 ПОЛЕЙ
+   ============================================================ */
+
+.grid-5 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 12px;
+}
+
+/* ============================================================
+   КНОПКИ
+   ============================================================ */
+
+button,
+input[type="submit"] {
+    padding: 14px 28px;
+    font-family: var(--font);
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(135deg, var(--accent), #5a3ecc);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+            0 8px 24px rgba(124, 92, 255, 0.3),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+button::before,
+input[type="submit"]::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.6s;
+}
+
+button:hover,
+input[type="submit"]:hover {
+    background: linear-gradient(135deg, var(--accent-bright), var(--accent));
+    transform: translateY(-2px);
+    box-shadow:
+            0 12px 32px rgba(124, 92, 255, 0.45),
+            inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+button:hover::before,
+input[type="submit"]:hover::before {
+    left: 100%;
+}
+
+button:active,
+input[type="submit"]:active {
+    transform: translateY(0);
+    box-shadow:
+            0 4px 12px rgba(124, 92, 255, 0.3),
+            inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* ============================================================
+   КНОПКА СБРОСА (твой класс mytreb)
+   ============================================================ */
+
+input[type="reset"].mytreb {
+    padding: 14px 28px;
+    font-family: var(--font);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-soft);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: none;
+    margin-top: 8px;
+}
+
+input[type="reset"].mytreb:hover {
+    background: rgba(255, 55, 95, 0.15);
+    border-color: rgba(255, 55, 95, 0.4);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 55, 95, 0.2);
+}
+
+input[type="reset"].mytreb:active {
+    transform: translateY(0);
+}
+
+/* ============================================================
+   БЛОК "РЕЗУЛЬТАТ" + ПОЛЕ ВЫВОДА
+   ============================================================ */
+
+#otvet {
+    display: flex !important;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+#otvet p {
+    margin: 0;
+    white-space: nowrap;
+    color: var(--text-soft);
+    font-weight: 600;
+    font-size: 15px;
+}
+
+/* Само поле с результатом */
+#otvet input.mytrebtext {
+    display: block !important;
+    flex: 1;
+    width: 100%;
+    max-width: none;
+    min-height: 50px;
+    padding: 12px 20px;
+    margin: 0;
+    font-family: var(--mono);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--accent);
+    border-radius: 12px;
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.5);
+    outline: none;
+    white-space: nowrap;
+    overflow-x: auto;
+}
+
+#otvet input.mytrebtext:focus {
+    border-color: var(--accent-bright);
+    box-shadow:
+            inset 0 2px 10px rgba(0, 0, 0, 0.5),
+            0 0 0 4px rgba(124, 92, 255, 0.15);
+}
+
+/* Прячем старый div#result, чтобы он не мешал */
+div#result {
+    display: none !important;
+}
+
+/* ============================================================
+   ПОДСКАЗКИ / HINTS
+   ============================================================ */
+
+.hint {
+    font-size: 13px;
+    color: var(--text-faint);
+    margin-top: 8px;
+    font-style: italic;
+}
+
+.hint code {
+    font-family: var(--mono);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: var(--text-soft);
+}
+
+/* ============================================================
+   ССЫЛКИ
+   ============================================================ */
+
+a {
+    color: var(--accent-bright);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: #fff;
+    text-shadow: 0 0 15px var(--accent-glow);
+}
+
+/* ============================================================
+   СКРОЛЛБАР
+   ============================================================ */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* ============================================================
+   ВЫДЕЛЕНИЕ
+   ============================================================ */
+
+::selection {
+    background: rgba(124, 92, 255, 0.4);
+    color: #fff;
+}
+
+/* ============================================================
+   АДАПТИВ
+   ============================================================ */
+
+@media (max-width: 600px) {
+    body {
+        padding: 20px 12px;
+    }
+
+    .container {
+        padding: 32px 24px;
+        border-radius: 20px;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+
+    .grid-5 {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    button,
+    input[type="submit"],
+    input[type="reset"].mytreb {
+        width: 100%;
+    }
+
+    #otvet {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    #otvet input.mytrebtext {
+        width: 100%;
+    }
+}
