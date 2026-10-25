@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Zadanie_2</title>
+    <Link rel="stylesheet" type="text/css" href="styles/style.css">
+</head>
+<body>
+<div class="container">
+
+    <header>
+        Нахождение двойного факториала
+        <p class="subtitle">Натуральное число</p>
+    </header>
+
+    <form name="task2Form">
+
+        <div class="grid-5">
+            <input type = "number" id = "d1" placeholder="5" required>
+        </div>
+
+        <button type="button" onclick="factorial(parseInt(document.getElementById('d1').value))">Найти</button>
+        <input type="reset" class = "mytreb">
+
+        <div id = "otvet">
+            <p>Результат</p>
+            <input type="text" id = "result" name = "result" class = "mytrebtext" size = "10" readonly value="0">
+        </div>
+    </form>
+
+
+</div>
+
+<script src="scripts/Zadanie_2.js"></script>
+</body>
+</html>
