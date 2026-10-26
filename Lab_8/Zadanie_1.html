@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Задание_1</title>
-<!--    <Link rel="stylesheet" type="text/css" href="styles/style1.css">-->
+    <Link rel="stylesheet" type="text/css" href="styles/style1.css">
     <link rel = "icon" type = "image/png" href = "Images/img.png">
 </head>
 <body>
 
+<div class="container">
 <header>
     <h3>
         Задание номер 1
@@ -17,11 +18,9 @@
 <br/>
 <h4>Введите 11 вещественных чисел</h4>
 
-<div>
+
     <form name = "form" method = "get" enctype="multipart/form-data">
-
         <table>
-
             <tr>
                 <th>Номер натурального числа</th>
                 <th>Значение</th>
@@ -29,72 +28,71 @@
 
             <tr>
                 <th>1</th>
-                <td><input type="number" name = "num1" id="n1" placeholder="0" required></td>
+                <td><input type="number" name = "num1" step="any" id="n1" placeholder="0" required></td>
             </tr>
 
             <tr>
                 <th>2</th>
-                <td><input type="number" name = "num2" id="n2" placeholder="0" required></td>
+                <td><input type="number" name = "num2" step="any" id="n2" placeholder="0" required></td>
             </tr>
 
             <tr>
                 <th>3</th>
-                <td><input type="number" name = "num3" id="n3" placeholder="0" required></td>
+                <td><input type="number" name = "num3" step="any" id="n3" placeholder="0" required></td>
             </tr>
 
             <tr>
                 <th>4</th>
-                <td><input type="number" name = "num4" id="n4" placeholder="0" required></td>
+                <td><input type="number" name = "num4" step="any" id="n4" placeholder="0" required></td>
             </tr>
 
             <tr>
                 <th>5</th>
-                <td><input type="number" name = "num5" id="n5" placeholder="0" required></td>
+                <td><input type="number" name = "num5" step="any" id="n5" placeholder="0" required></td>
             </tr>
 
             <tr>
                 <th>6</th>
-                <td><input type="number" name = "num6" id="n6" placeholder="0" required></td>
+                <td><input type="number" name = "num6" step="any" id="n6" placeholder="0" required></td>
             </tr>
 
             <tr>
                 <th>7</th>
-                <td><input type="number" name = "num7" id="n7" placeholder="0" required></td>
+                <td><input type="number" name = "num7" step="any" id="n7" placeholder="0" required></td>
             </tr>
 
             <tr>
                 <th>8</th>
-                <td><input type="number" name = "num8" id="n8" placeholder="0" required></td>
+                <td><input type="number" name = "num8" step="any" id="n8" placeholder="0" required></td>
             </tr>
 
             <tr>
                 <th>9</th>
-                <td><input type="number" name = "num9" id="n9" placeholder="0" required></td>
+                <td><input type="number" name = "num9" step="any" id="n9" placeholder="0" required></td>
             </tr>
 
             <tr>
                 <th>10</th>
-                <td><input type="number" name = "num10" id="n10" placeholder="0" required></td>
+                <td><input type="number" name = "num10" step="any" id="n10" placeholder="0" required></td>
             </tr>
 
             <tr>
                 <th>11</th>
-                <td><input type="number" name = "num11" id="n11" placeholder="0" required></td>
+                <td><input type="number" name = "num11" step="any" id="n11" placeholder="0" required></td>
             </tr>
 
             <tr>
                 <th><input type="reset"></th>
-                <th>></th>
+                <th><input type="button" onclick="sumValues()" value="Найти"></th>
             </tr>
 
             <tr>
-                <th colspan="2"><input type= "text" maxlength="70" name="answer" id = "result" placeholder="NaN" readonly></th>
+                <th>Ответ:</th>
+                <th><input type= "text" maxlength="70" name="answer" id = "result" placeholder="NaN" readonly></th>
             </tr>
-
         </table>
-
     </form>
 </div>
-
+<script src="Scripts/Zadanie_1.js"></script>
 </body>
 </html>

@@ -4,16 +4,22 @@ function sumValues() {
 
     var mass = [];
 
-    var value = 0;
+    var value = 1;
 
     for (var i = 1; i <= 11; i++) {
-        mass.push(Math.abs(parseInt(document.getElementById("n" + i).value)));
+        if (document.getElementById("n" + i).value === "") {
+            result.value = "Заполни все 11 полей!";
+            return;
+        }else{
+            mass.push(Math.abs(parseFloat(document.getElementById("n" + i).value)));
+        }
     }
+
 
     for(var i = 0; i < mass.length; i++) {
-        value *= mass[i].value;
+        value *= mass[i];
     }
 
-    result.value =  "Результат произведения по модулю: " + value + " !";
+    result.value = value;
 
 }

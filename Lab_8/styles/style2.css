@@ -1,0 +1,479 @@
+/* ==========================================================================
+   1. СБРОС И БАЗА — «Летнее утро»
+   ========================================================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', 'Georgia', 'Arial', sans-serif;
+    background-color: #fdfaf3;
+    background-image: radial-gradient(circle at 20% 30%, rgba(255, 245, 200, 0.6), transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(200, 230, 180, 0.4), transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.5), transparent 60%);
+    color: #3b4a2e;
+    line-height: 1.6;
+    padding: 40px 20px;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* ==========================================================================
+   2. АНИМАЦИИ — «Солнце светит, трава растёт»
+   ========================================================================== */
+
+/* Солнце в углу */
+body::before {
+    content: "☀️";
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 60px;
+    z-index: -1;
+    animation: sunPulse 4s ease-in-out infinite;
+    filter: drop-shadow(0 0 20px rgba(255, 200, 50, 0.6));
+}
+
+@keyframes sunPulse {
+    0%, 100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 0.7;
+    }
+    50% {
+        transform: scale(1.15) rotate(10deg);
+        opacity: 1;
+    }
+}
+
+/* Трава внизу */
+body::after {
+    content: "🌿 🌱 🌿 🌾 🌿 🌱 🌿 🌾 🌿 🌱 🌿 🌾 🌿 🌱 🌿";
+    position: fixed;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    font-size: 28px;
+    text-align: center;
+    letter-spacing: 15px;
+    z-index: -1;
+    opacity: 0.6;
+    animation: grassSway 3s ease-in-out infinite;
+    transform-origin: bottom center;
+}
+
+@keyframes grassSway {
+    0%, 100% {
+        transform: skewX(0deg);
+    }
+    25% {
+        transform: skewX(2deg);
+    }
+    75% {
+        transform: skewX(-2deg);
+    }
+}
+
+/* ==========================================================================
+   3. КОНТЕЙНЕР — «Деревенская веранда»
+   ========================================================================== */
+.container {
+    max-width: 850px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(100, 120, 80, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    border: 1px solid #e8e2d0;
+    position: relative;
+    overflow: hidden;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Декоративный листик */
+.container::before {
+    content: "🌿";
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 40px;
+    opacity: 0.15;
+    transform: rotate(15deg);
+    pointer-events: none;
+    animation: leafFloat 6s ease-in-out infinite;
+}
+
+@keyframes leafFloat {
+    0%, 100% {
+        transform: rotate(15deg) translateY(0);
+    }
+    50% {
+        transform: rotate(25deg) translateY(-5px);
+    }
+}
+
+/* Птички пролетают (декоративно) */
+.container::after {
+    content: "🕊️";
+    position: absolute;
+    top: 20px;
+    right: 60px;
+    font-size: 24px;
+    opacity: 0.2;
+    animation: birdFly 8s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes birdFly {
+    0% {
+        transform: translateX(0) translateY(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.3;
+    }
+    90% {
+        opacity: 0.3;
+    }
+    100% {
+        transform: translateX(-100px) translateY(-20px);
+        opacity: 0;
+    }
+}
+
+/* ==========================================================================
+   4. ЗАГОЛОВКИ — «Надпись на заборе»
+   ========================================================================== */
+header h3 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #5a7a3a;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    animation: titleBreathe 3s ease-in-out infinite;
+}
+
+@keyframes titleBreathe {
+    0%, 100% {
+        text-shadow: 0 0 0 rgba(143, 188, 90, 0);
+    }
+    50% {
+        text-shadow: 0 0 15px rgba(143, 188, 90, 0.3);
+    }
+}
+
+header h3::after {
+    content: "";
+    display: block;
+    width: 120px;
+    height: 3px;
+    background: linear-gradient(to right, transparent, #8fbc5a, transparent);
+    margin: 10px auto 0;
+    border-radius: 2px;
+    animation: underlineGrow 2s ease-out;
+}
+
+@keyframes underlineGrow {
+    from {
+        width: 0;
+    }
+    to {
+        width: 120px;
+    }
+}
+
+h4 {
+    font-size: 20px;
+    color: #7a8f5a;
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 400;
+    font-style: italic;
+}
+
+/* ==========================================================================
+   5. ФОРМА И ТАБЛИЦА — «Грядки»
+   ========================================================================== */
+form {
+    margin-top: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 12px;
+}
+
+table th {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #8a9a6a;
+    font-weight: 600;
+    padding-bottom: 10px;
+    border-bottom: 2px dashed #d4e0b8;
+    text-align: left;
+}
+
+table th:first-child {
+    width: 80px;
+    text-align: center;
+}
+
+table td {
+    background-color: #fbfdf7;
+    border-radius: 10px;
+    padding: 12px 15px;
+    vertical-align: middle;
+    border: 1px solid #eef0e2;
+    transition: all 0.2s ease;
+    animation: rowAppear 0.5s ease-out backwards;
+}
+
+/* Задержка появления для каждой строки */
+table tr:nth-child(2) td { animation-delay: 0.1s; }
+table tr:nth-child(3) td { animation-delay: 0.15s; }
+table tr:nth-child(4) td { animation-delay: 0.2s; }
+table tr:nth-child(5) td { animation-delay: 0.25s; }
+table tr:nth-child(6) td { animation-delay: 0.3s; }
+table tr:nth-child(7) td { animation-delay: 0.35s; }
+table tr:nth-child(8) td { animation-delay: 0.4s; }
+table tr:nth-child(9) td { animation-delay: 0.45s; }
+table tr:nth-child(10) td { animation-delay: 0.5s; }
+table tr:nth-child(11) td { animation-delay: 0.55s; }
+
+@keyframes rowAppear {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+table tr:hover td {
+    background-color: #f4f9ec;
+    border-color: #d4e0b8;
+    transform: translateX(3px);
+}
+
+/* Номер цветка */
+.flower-card {
+    background-color: #8fbc5a !important;
+    color: #ffffff !important;
+    font-weight: 700;
+    text-align: center;
+    border: none !important;
+    border-radius: 50% !important;
+    width: 45px;
+    height: 45px;
+    padding: 0 !important;
+    font-size: 16px;
+    box-shadow: 0 3px 8px rgba(143, 188, 90, 0.4);
+    transition: all 0.3s ease;
+}
+
+.flower-card:hover {
+    transform: scale(1.1) rotate(10deg);
+    box-shadow: 0 5px 15px rgba(143, 188, 90, 0.6);
+}
+
+/* ==========================================================================
+   6. ИНПУТЫ — «Семена и ростки»
+   ========================================================================== */
+input[type="text"] {
+    font-family: inherit;
+    font-size: 15px;
+    color: #4a5a3a;
+    background-color: #ffffff;
+    border: 2px solid #e8eedd;
+    border-radius: 8px;
+    padding: 8px 12px;
+    outline: none;
+    transition: all 0.2s ease;
+    margin-right: 8px;
+}
+
+input[type="text"]:focus {
+    border-color: #8fbc5a;
+    box-shadow: 0 0 0 3px rgba(143, 188, 90, 0.15);
+    transform: scale(1.02);
+}
+
+table td input[type="text"] {
+    width: auto;
+}
+
+#n0, #n1, #n2, #n3, #n4, #n5, #n6, #n7, #n8, #n9 {
+    width: 140px;
+}
+
+#h0, #h1, #h2, #h3, #h4, #h5, #h6, #h7, #h8, #h9 {
+    width: 80px;
+}
+
+input[type="color"] {
+    width: 35px;
+    height: 35px;
+    border: 2px solid #e8eedd;
+    border-radius: 50%;
+    cursor: pointer;
+    vertical-align: middle;
+    padding: 2px;
+    background-color: #ffffff;
+    margin-right: 8px;
+    transition: all 0.3s ease;
+}
+
+input[type="color"]:hover {
+    transform: scale(1.2) rotate(-10deg);
+    border-color: #8fbc5a;
+    box-shadow: 0 0 10px rgba(143, 188, 90, 0.4);
+}
+
+/* ==========================================================================
+   7. КНОПКИ — «Урожай» (ИСПРАВЛЕНО ОТ НАЛИПАНИЯ)
+   ========================================================================== */
+input[type="button"],
+input[type="reset"] {
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+    margin: 0 10px; /* Отступы между кнопками */
+}
+
+input[type="button"] {
+    background: linear-gradient(135deg, #a8d46a, #7ab33e);
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(122, 179, 62, 0.35);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Блик на кнопке «Собрать» */
+input[type="button"]::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.5s ease;
+}
+
+input[type="button"]:hover::before {
+    left: 100%;
+}
+
+input[type="button"]:hover {
+    background: linear-gradient(135deg, #97c55a, #6aa32e);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(122, 179, 62, 0.5);
+}
+
+input[type="button"]:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: 0 2px 8px rgba(122, 179, 62, 0.3);
+}
+
+input[type="reset"] {
+    background-color: #e8e2d0;
+    color: #7a6a4a;
+    border: 2px solid #d4c8b0;
+}
+
+input[type="reset"]:hover {
+    background-color: #ddd4bc;
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 6px 20px rgba(180, 160, 120, 0.3);
+}
+
+/* ==========================================================================
+   8. ФИНАЛЬНАЯ СТРОКА С КНОПКАМИ — ИСПРАВЛЕНО
+   ========================================================================== */
+table tr:last-child {
+    display: table-row; /* Возвращаем табличное поведение */
+}
+
+table tr:last-child td,
+table tr:last-child th {
+    background: transparent !important;
+    border: none !important;
+    padding-top: 25px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Убираем лишние отступы у ячеек с кнопками */
+table tr:last-child th:first-child {
+    width: 50%;
+    text-align: right;
+    padding-right: 15px;
+}
+
+table tr:last-child th:last-child {
+    width: 50%;
+    text-align: left;
+    padding-left: 15px;
+}
+
+/* ==========================================================================
+   9. АДАПТИВНОСТЬ
+   ========================================================================== */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+
+    #n0, #n1, #n2, #n3, #n4, #n5, #n6, #n7, #n8, #n9 {
+        width: 100px;
+    }
+
+    input[type="text"] {
+        font-size: 13px;
+    }
+
+    input[type="button"],
+    input[type="reset"] {
+        padding: 10px 20px;
+        font-size: 13px;
+        margin: 5px;
+    }
+
+    body::before {
+        font-size: 40px;
+    }
+
+    body::after {
+        font-size: 20px;
+        letter-spacing: 8px;
+    }
+}
