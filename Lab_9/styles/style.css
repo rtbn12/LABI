@@ -1,0 +1,418 @@
+/* ============================================================
+   0. ПЕРЕМЕННЫЕ И СБРОС
+   ============================================================ */
+:root {
+    --bg-dark: #05070a;
+    --bg-panel: #0a0e14;
+    --bg-input: #0d1218;
+    --accent: #00e5ff;
+    --accent-2: #ff006e;
+    --accent-glow: rgba(0, 229, 255, 0.6);
+    --accent-2-glow: rgba(255, 0, 110, 0.5);
+    --text-main: #e6edf3;
+    --text-dim: #5a6a7d;
+    --text-bright: #ffffff;
+    --border: #1a2533;
+    --border-bright: #2a3a4d;
+    --danger: #ff2d55;
+    --success: #00ff88;
+    --font-mono: 'Courier New', 'Consolas', monospace;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    cursor: none !important;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: var(--font-mono);
+    background: var(--bg-dark);
+    color: var(--text-main);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+    background-image:
+            radial-gradient(ellipse at 20% 30%, rgba(0, 229, 255, 0.08), transparent 50%),
+            radial-gradient(ellipse at 80% 70%, rgba(255, 0, 110, 0.08), transparent 50%),
+            linear-gradient(135deg, #05070a 0%, #0a0e14 100%);
+}
+
+/* ============================================================
+   1. СЛОЙ ЭФФЕКТОВ
+   ============================================================ */
+.effects-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* --- Матричный дождь --- */
+.matrix-rain {
+    position: absolute;
+    inset: 0;
+    opacity: 0.15;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    line-height: 1.2;
+    color: var(--accent);
+    overflow: hidden;
+}
+
+.matrix-column {
+    position: absolute;
+    top: -100%;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    letter-spacing: 4px;
+    animation: matrixFall linear infinite;
+    text-shadow: 0 0 8px var(--accent);
+}
+
+@keyframes matrixFall {
+    to { transform: translateY(200vh); }
+}
+
+/* --- Сканлайны --- */
+.scanlines {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+            0deg,
+            rgba(0, 0, 0, 0.15) 0px,
+            rgba(0, 0, 0, 0.15) 1px,
+            transparent 1px,
+            transparent 3px
+    );
+    animation: scanlineMove 8s linear infinite;
+    z-index: 2;
+}
+
+@keyframes scanlineMove {
+    to { background-position: 0 100px; }
+}
+
+/* --- Виньетка --- */
+.vignette {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.7) 100%);
+    z-index: 3;
+}
+
+/* --- Глитч --- */
+.glitch-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    opacity: 0;
+    mix-blend-mode: screen;
+}
+
+.glitch-overlay.active {
+    animation: glitchFlash 0.15s steps(2) 1;
+}
+
+@keyframes glitchFlash {
+    0% { opacity: 1; background: linear-gradient(90deg, var(--accent-2) 0%, transparent 30%, var(--accent) 60%, transparent 100%); transform: translateX(-10px); }
+    50% { opacity: 0.8; transform: translateX(10px); }
+    100% { opacity: 0; transform: translateX(0); }
+}
+
+/* --- Частицы --- */
+.particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    animation: particleFloat linear infinite;
+}
+
+@keyframes particleFloat {
+    0% { transform: translateY(100vh) scale(0); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(-10vh) scale(2); opacity: 0; }
+}
+
+/* ============================================================
+   2. КУРСОР-АВТОМАТ
+   ============================================================ */
+.cursor-wrapper {
+    position: fixed;
+    top: 0; left: 0;
+    width: 0; height: 0;
+    pointer-events: none;
+    z-index: 10000;
+}
+
+.gun-cursor {
+    position: absolute;
+    width: 120px; height: 60px;
+    transform: translate(-20px, -20px);
+    transition: transform 0.1s ease-out;
+    filter: drop-shadow(0 0 10px var(--accent-glow));
+}
+
+.gun-cursor svg {
+    width: 100%; height: 100%;
+    overflow: visible;
+}
+
+.gun-cursor.firing {
+    transform: translate(-20px, -20px) rotate(-3deg) scale(0.95);
+}
+
+.gun-cursor.hovering {
+    filter: drop-shadow(0 0 15px var(--accent-2-glow));
+}
+
+.gun-cursor.hovering svg rect,
+.gun-cursor.hovering svg path {
+    stroke: var(--accent-2);
+}
+
+/* Прицел */
+.crosshair {
+    position: absolute;
+    width: 40px; height: 40px;
+    border: 1px solid var(--accent);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.4;
+    transition: all 0.2s ease;
+}
+
+.crosshair::before, .crosshair::after {
+    content: ""; position: absolute; background: var(--accent);
+}
+
+.crosshair::before { width: 1px; height: 100%; left: 50%; top: 0; transform: translateX(-50%); }
+.crosshair::after { width: 100%; height: 1px; top: 50%; left: 0; transform: translateY(-50%); }
+
+.gun-cursor.hovering ~ .crosshair {
+    border-color: var(--accent-2);
+    width: 30px; height: 30px;
+    opacity: 0.8;
+}
+
+/* --- Дульная вспышка --- */
+.muzzle-flash-layer {
+    position: fixed; inset: 0; pointer-events: none; z-index: 9999;
+}
+
+.muzzle-flash {
+    position: absolute;
+    width: 60px; height: 60px;
+    background: radial-gradient(circle, #fff 0%, #ffdd00 20%, #ff6600 50%, transparent 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: muzzleFlashAnim 0.12s ease-out forwards;
+}
+
+@keyframes muzzleFlashAnim {
+    0% { transform: translate(-50%, -50%) scale(0.3); opacity: 1; }
+    100% { transform: translate(-50%, -50%) scale(2.5); opacity: 0; }
+}
+
+/* --- Гильзы --- */
+.shells-layer {
+    position: fixed; inset: 0; pointer-events: none; z-index: 9998;
+}
+
+.shell {
+    position: absolute;
+    width: 8px; height: 16px;
+    background: linear-gradient(180deg, #d4af37 0%, #8b6914 100%);
+    border-radius: 1px;
+    box-shadow: 0 0 6px rgba(212, 175, 55, 0.6);
+    animation: shellFly 1.2s ease-out forwards;
+}
+
+@keyframes shellFly {
+    0% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
+    100% { transform: translate(var(--dx), var(--dy)) rotate(720deg); opacity: 0; }
+}
+
+/* ============================================================
+   3. ОСНОВНАЯ ПАНЕЛЬ
+   ============================================================ */
+.regisrtation_panel {
+    position: relative;
+    width: 100%; max-width: 760px;
+    background: linear-gradient(145deg, rgba(10, 14, 20, 0.95), rgba(5, 7, 10, 0.98));
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 50px 45px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 60px rgba(0, 229, 255, 0.05), inset 0 0 80px rgba(0, 229, 255, 0.02);
+    z-index: 10;
+    animation: panelAppear 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+@keyframes panelAppear {
+    from { opacity: 0; transform: translateY(60px) scale(0.92); filter: blur(20px); }
+    to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+
+/* Уголки панели */
+.panel-corner {
+    position: absolute; width: 20px; height: 20px; border: 2px solid var(--accent);
+    animation: cornerPulse 2.5s ease-in-out infinite;
+}
+
+.panel-corner.top-left { top: 10px; left: 10px; border-right: none; border-bottom: none; }
+.panel-corner.top-right { top: 10px; right: 10px; border-left: none; border-bottom: none; }
+.panel-corner.bottom-left { bottom: 10px; left: 10px; border-right: none; border-top: none; }
+.panel-corner.bottom-right { bottom: 10px; right: 10px; border-left: none; border-top: none; }
+
+@keyframes cornerPulse {
+    0%, 100% { opacity: 0.5; box-shadow: 0 0 0 var(--accent-glow); }
+    50% { opacity: 1; box-shadow: 0 0 20px var(--accent-glow); }
+}
+
+/* ============================================================
+   4. ЗАГОЛОВОК И ФУТЕР
+   ============================================================ */
+header { margin-bottom: 40px; text-align: center; }
+
+.header-tag {
+    font-size: 11px; color: var(--accent); letter-spacing: 3px;
+    text-transform: uppercase; margin-bottom: 15px;
+    animation: tagBlink 3s ease-in-out infinite;
+}
+
+@keyframes tagBlink { 0%, 100% { opacity: 0.7; } 50% { opacity: 1; } }
+
+header h3 {
+    font-family: var(--font-mono); font-size: 18px; font-weight: 400;
+    letter-spacing: 2px; color: var(--text-bright); line-height: 1.8;
+    text-transform: uppercase; text-shadow: 0 0 20px var(--accent-glow);
+}
+
+.header-line {
+    height: 1px; width: 100%; margin-top: 20px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    box-shadow: 0 0 12px var(--accent-glow);
+    animation: linePulse 3s ease-in-out infinite;
+}
+
+@keyframes linePulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+
+footer { margin-top: 35px; text-align: center; }
+
+.footer-line {
+    height: 1px; width: 100%; margin-bottom: 15px;
+    background: linear-gradient(90deg, transparent, var(--border-bright), transparent);
+}
+
+footer h4 { font-size: 11px; color: var(--text-dim); font-weight: 400; letter-spacing: 3px; text-transform: uppercase; }
+
+/* ============================================================
+   5. ТАБЛИЦА И ИНПУТЫ
+   ============================================================ */
+#registration_table { width: 100%; border-collapse: separate; border-spacing: 0 22px; }
+
+#registration_table th {
+    text-align: left; font-family: var(--font-mono); font-size: 12px; font-weight: 400;
+    color: var(--text-dim); letter-spacing: 1.5px; text-transform: uppercase;
+    width: 42%; padding-right: 25px; vertical-align: middle; transition: color 0.3s ease;
+}
+
+.field-index {
+    display: inline-block; color: var(--accent); font-size: 10px;
+    margin-right: 10px; opacity: 0.6; transition: opacity 0.3s ease;
+}
+
+#registration_table tr:hover .field-index { opacity: 1; text-shadow: 0 0 10px var(--accent); }
+#registration_table tr:hover th { color: var(--accent); }
+#registration_table td { vertical-align: middle; }
+
+input[type="text"], input[type="email"] {
+    width: 100%; padding: 16px 20px; font-family: var(--font-mono); font-size: 14px;
+    color: var(--text-bright); background-color: var(--bg-input);
+    border: 1px solid var(--border); border-radius: 4px; outline: none;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); letter-spacing: 0.5px;
+}
+
+input::placeholder { color: #2a3a4d; font-style: italic; }
+input:hover { border-color: var(--border-bright); background-color: #0f151c; }
+
+input:focus {
+    border-color: var(--accent); background-color: #0d1520;
+    box-shadow: 0 0 0 2px rgba(0, 229, 255, 0.1), 0 0 30px rgba(0, 229, 255, 0.15), inset 0 0 20px rgba(0, 229, 255, 0.03);
+    transform: translateX(6px);
+}
+
+input:invalid:not(:placeholder-shown) { border-color: var(--danger); box-shadow: 0 0 0 2px rgba(255, 45, 85, 0.15); }
+input:valid:not(:placeholder-shown) { border-color: var(--success); box-shadow: 0 0 0 2px rgba(0, 255, 136, 0.1); }
+
+/* ============================================================
+   6. КНОПКИ
+   ============================================================ */
+.buttons-cell { text-align: center; padding-top: 20px; }
+
+input[type="submit"], input[type="reset"] {
+    font-family: var(--font-mono); padding: 16px 40px; font-size: 13px; font-weight: 600;
+    letter-spacing: 3px; text-transform: uppercase; border: 1px solid var(--accent);
+    border-radius: 4px; background: transparent; color: var(--accent);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden; z-index: 1; margin: 0 10px;
+}
+
+input[type="submit"]::before, input[type="reset"]::before {
+    content: ""; position: absolute; inset: 0; background: var(--accent);
+    transform: scaleX(0); transform-origin: left; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); z-index: -1;
+}
+
+input[type="submit"]:hover::before { transform: scaleX(1); }
+input[type="submit"]:hover { color: var(--bg-dark); box-shadow: 0 0 40px var(--accent-glow); transform: translateY(-3px); }
+
+input[type="reset"] { border-color: var(--danger); color: var(--danger); }
+input[type="reset"]::before { background: var(--danger); }
+input[type="reset"]:hover::before { transform: scaleX(1); }
+input[type="reset"]:hover { color: var(--bg-dark); box-shadow: 0 0 40px var(--accent-2-glow); transform: translateY(-3px); }
+
+/* ============================================================
+   7. HUD
+   ============================================================ */
+.hud-status {
+    position: fixed; top: 25px; left: 25px; font-family: var(--font-mono);
+    font-size: 12px; color: var(--success); letter-spacing: 2px; z-index: 100;
+    display: flex; align-items: center; gap: 8px;
+}
+
+.hud-dot {
+    width: 8px; height: 8px; background: var(--success); border-radius: 50%;
+    box-shadow: 0 0 12px var(--success); animation: hudBlink 1.5s ease-in-out infinite;
+}
+
+@keyframes hudBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+.hud-coords {
+    position: fixed; bottom: 25px; right: 25px; font-family: var(--font-mono);
+    font-size: 12px; color: var(--text-dim); letter-spacing: 2px; z-index: 100;
+}
+
+/* ============================================================
+   8. АДАПТИВНОСТЬ
+   ============================================================ */
+@media (max-width: 700px) {
+    .regisrtation_panel { padding: 30px 20px; margin: 15px; }
+    header h3 { font-size: 14px; }
+    #registration_table th { font-size: 10px; width: 45%; }
+    input[type="text"], input[type="email"] { padding: 12px 14px; font-size: 12px; }
+    input[type="submit"], input[type="reset"] { padding: 12px 20px; font-size: 10px; letter-spacing: 2px; margin: 5px; }
+    .gun-cursor { width: 80px; height: 40px; }
+    .hud-status, .hud-coords { font-size: 10px; }
+}

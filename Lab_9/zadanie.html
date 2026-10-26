@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>РЕГИСТРАЦИЯ // СИСТЕМА ДОСТУПА</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="icon" type="image/png" href="images/img.png">
+</head>
+<body>
+
+
+<div class="effects-layer">
+    <div class="matrix-rain" id="matrixRain"></div>
+    <div class="scanlines"></div>
+    <div class="vignette"></div>
+    <div class="glitch-overlay" id="glitchOverlay"></div>
+    <div class="particles" id="particles"></div>
+</div>
+
+<div class="cursor-wrapper" id="cursorWrapper">
+    <div class="gun-cursor" id="gunCursor">
+        <svg viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg">
+            <rect x="10" y="22" width="70" height="8" fill="#1a1a1a" stroke="#00e5ff" stroke-width="1.5"/>
+            <rect x="78" y="20" width="14" height="12" fill="#0a0a0a" stroke="#00e5ff" stroke-width="1.5"/>
+            <path d="M 30 30 L 30 50 L 45 50 L 48 30 Z" fill="#2a2a2a" stroke="#00e5ff" stroke-width="1.5"/>
+            <path d="M 48 30 L 48 52 L 58 52 L 58 30 Z" fill="#1a1a1a" stroke="#00e5ff" stroke-width="1.5"/>
+            <rect x="0" y="24" width="12" height="16" fill="#0a0a0a" stroke="#00e5ff" stroke-width="1.5"/>
+            <rect x="55" y="16" width="8" height="6" fill="#00e5ff"/>
+            <circle id="muzzleFlash" cx="92" cy="26" r="10" fill="#ffdd00" opacity="0"/>
+        </svg>
+    </div>
+    <div class="crosshair" id="crosshair"></div>
+</div>
+
+
+<div class="muzzle-flash-layer" id="muzzleFlashLayer"></div>
+
+
+<div class="shells-layer" id="shellsLayer"></div>
+
+
+<div class="regisrtation_panel" id="registrationPanel">
+    <div class="panel-corner top-left"></div>
+    <div class="panel-corner top-right"></div>
+    <div class="panel-corner bottom-left"></div>
+    <div class="panel-corner bottom-right"></div>
+
+    <header>
+        <div class="header-tag">// СИСТЕМА РЕГИСТРАЦИИ v4.0</div>
+        <h3>ДЛЯ РЕГИСТРАЦИИ НЕОБХОДИМО УКАЗАТЬ ВАШИ ПЕРСОНАЛЬНЫЕ ДАННЫЕ</h3>
+        <div class="header-line"></div>
+    </header>
+
+    <form name="registration_form" id="registration_form"
+          method="get" action="zadanie.html" enctype="multipart/form-data"
+          onsubmit="checkData(); return false">
+        <table id="registration_table">
+            <tr>
+                <th><span class="field-index">01</span> ФИО:</th>
+                <td><input type="text" id="name_f" maxlength="50" required placeholder="Иванов Иван Иванович"></td>
+            </tr>
+            <tr>
+                <th><span class="field-index">02</span> Организация<br/>(компания)</th>
+                <td><input type="text" id="company_f" maxlength="70" required placeholder="ООО Ромашка"></td>
+            </tr>
+            <tr>
+                <th><span class="field-index">03</span> Телефон:</th>
+                <td><input type="text" id="number_f" maxlength="50" required placeholder="+7 999 123-45-67"></td>
+            </tr>
+            <tr>
+                <th><span class="field-index">04</span> Адрес эл.почты:</th>
+                <td><input type="email" id="mail_f" required placeholder="user@example.com"></td>
+            </tr>
+            <tr>
+                <td colspan="2" class="buttons-cell">
+                    <input type="reset" value="ОЧИСТИТЬ" id="reset_btn">
+                    <input type="submit" id="button_f" value="ОТПРАВИТЬ">
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <footer>
+        <div class="footer-line"></div>
+        <h4>// ВСЕ ПОЛЯ ОБЯЗАТЕЛЬНЫ ДЛЯ ЗАПОЛНЕНИЯ //</h4>
+    </footer>
+</div>
+
+
+<div class="hud-status" id="hudStatus">
+    <span class="hud-dot"></span> ONLINE
+</div>
+<div class="hud-coords" id="hudCoords">X: 0 Y: 0</div>
+
+<script src="scripts/zadanie.js"></script>
+</body>
+</html>
